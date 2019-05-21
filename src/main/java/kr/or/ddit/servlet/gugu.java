@@ -8,7 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 public class gugu extends HttpServlet {
+	
+	private Logger logger = LoggerFactory.getLogger(gugu.class);
+	
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -20,9 +27,12 @@ public class gugu extends HttpServlet {
 		//localhost/jsp/timesTable?param=6
 		
 		String param=req.getParameter("i");
-		System.out.println("param"+param);
+		//System.out.println("param"+param);
 		String param2=req.getParameter("j");
-		System.out.println("param2"+param2);
+		//System.out.println("param2"+param2);
+		
+		logger.debug("param: "+param, "test");
+		logger.debug("param2: "+param2);
 
 		pw.write("<html>");
 		pw.write("<head>");

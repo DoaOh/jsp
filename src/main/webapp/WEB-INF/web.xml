@@ -16,7 +16,7 @@
   </servlet>
   <servlet-mapping>
   <servlet-name>gugu</servlet-name>
-  <url-pattern>/bsgugu</url-pattern>
+  <url-pattern>/gugu</url-pattern>
   </servlet-mapping>
   
   
