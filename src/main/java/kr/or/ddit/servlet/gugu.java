@@ -31,8 +31,8 @@ public class gugu extends HttpServlet {
 		String param2=req.getParameter("j");
 		//System.out.println("param2"+param2);
 		
-		logger.debug("param: "+param, "test");
-		logger.debug("param2: "+param2);
+		logger.debug("param: {}"+param, "test");
+		logger.debug("param2: {}"+param2);
 
 		pw.write("<html>");
 		pw.write("<head>");
