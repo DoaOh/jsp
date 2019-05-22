@@ -32,5 +32,11 @@ String msg ="test";
  <img src="/jsp/image/sally.png">
  
 
+
+<%--파라미터 받기 --%>
+
+
+request.getParameter("paramm") : <%=request.getParameter("paramm") %>
+
 </body>
 </html>

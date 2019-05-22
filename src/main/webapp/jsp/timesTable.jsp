@@ -10,11 +10,18 @@
 
 
 <!-- localhoist/jsp/jsp/timesTable.jsp -->
+
+
+<% String param1 = request.getParameter("param1"); %>
+<% String param2 = request.getParameter("param2"); %>
+
 <table border='1'>
 
-<% for (int i = 1; i <=9; i++){%>
+
+
+<% for (int i = 1; i <=Integer.parseInt(param1); i++){%>
 <tr>
-<%for (int j = 2; j <=9; j++){ %>
+<%for (int j = 2; j <=Integer.parseInt(param2); j++){ %>
 <td>
 <%=j+"*"+i +"="+i*j%>
 <%} %>

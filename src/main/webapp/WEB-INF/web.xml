@@ -9,15 +9,12 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
   <servlet>
-  <servlet-class>kr.or.ddit.servlet.gugu</servlet-class>
-  <servlet-name>gugu</servlet-name>
+    <servlet-name>gugu</servlet-name>
+    <servlet-class>kr.or.ddit.servlet.gugu</servlet-class>
   </servlet>
   <servlet-mapping>
-  <servlet-name>gugu</servlet-name>
-  <url-pattern>/gugu</url-pattern>
+    <servlet-name>gugu</servlet-name>
+    <url-pattern>/gugu</url-pattern>
   </servlet-mapping>
-  
-  
 </web-app>
