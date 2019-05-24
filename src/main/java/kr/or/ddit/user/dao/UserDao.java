@@ -21,16 +21,17 @@ public class UserDao implements IuserDao {
 		/***Given***/
 		
 		IuserDao userDao= new UserDao();
-		
+		String userId= "brown";
 
 		/***When***/
 		List<UserVo> userList = userDao.userList();
-		
+		UserVo uservo  =userDao.getUser(userId);
 		
 		/***Then***/
 
 		
 		logger.debug("userList {} ",userList);
+		logger.debug("userInfo {} ",uservo);
 		
 		
 		
@@ -44,8 +45,15 @@ public class UserDao implements IuserDao {
 		
 		return userList;
 	}
+
+	@Override
+	public UserVo getUser(String userId) {
+
+		SqlSession sqlSession = MyBataisUtill.getSqlSession();
+		UserVo uservo = sqlSession.selectOne("user.userInfo",userId);
+		
+		return uservo;
 	
 	
-	
-	
+	}	
 }

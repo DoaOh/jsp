@@ -14,5 +14,9 @@ public interface IuserService {
 	 * Method 설명 :
 	 */
 	List<UserVo> userList();
+	
+	
+	public UserVo getUser(String userId);	
+
 
 }

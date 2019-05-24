@@ -8,6 +8,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.myBatis.MyBataisUtill;
 import kr.or.ddit.user.model.UserVo;
 
 public class UserService implements IuserService{
@@ -20,15 +23,20 @@ public class UserService implements IuserService{
 	@Override
 	public List<UserVo> userList() {
 		
+	
+       SqlSession sqlSession = MyBataisUtill.getSqlSession();
+		List<UserVo> userList = sqlSession.selectList("user.userList");
 		
-		List<UserVo> userList = new ArrayList<UserVo>();
-			
-			userList.add(new UserVo("브라운","brown","곰"));
-			userList.add(new UserVo("코니","cony","토끼"));
-			userList.add(new UserVo("샐리","sally","오리"));
-			userList.add(new UserVo("제암스","james","띠용"));
-			userList.add(new UserVo("문","moon","달"));
 		return userList;
+	}
+
+	@Override
+	public UserVo getUser(String userId) {
+
+		SqlSession sqlSession = MyBataisUtill.getSqlSession();
+		UserVo uservo = sqlSession.selectOne("user.userInfo",userId);
+		
+		return uservo;
 	}
 
 	

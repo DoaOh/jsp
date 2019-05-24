@@ -10,5 +10,8 @@ public interface IuserDao {
 
 	
 	public List<UserVo> userList();
+	
+	
+	public UserVo getUser(String userId);	
 
 }
