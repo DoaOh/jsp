@@ -24,7 +24,7 @@
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
+	<script src="<%=request.getContextPath()%>/js/js.cookie.js"></script>
 
 
 	<script>
@@ -37,28 +37,29 @@
 		//rememberme checkbox
 		//1.rememberme cookie가 있는지 있다면 값이 true인지
 		//1-1 remember me가  true 라면  input id "rememberme" 테크박스를 테크 해줄거여 
-		var rememberme = getCookie("rememberme")
+		var rememberme = Cookies.get("rememberme")
+		
 		if(rememberme == "true"){
 			$("#rememberme").prop("checked",true);
-			$("#userId").val(getCookie("userid"));
+			$("#userId").val(Cookies.get("userid"));
 			$("#password").focus();
 			
 			
 			//encodeURLComponent
 		}
 		$("#signinBtn").on("click",function(){
-			console.log("signin");
+		
 			//만약에 rememberme  체크박스가 체크되어있는경주 
 			//사용자 아이디를 userid 쿠기로 저자 
 			//true 값을 rememberme 
 			
 			if($("#rememberme").is(":checked")){
-				setCookie("userid",$("#userId").val(),30);
-				setCookie("rememberme","true",30);
+				Cookies.set("userid",$("#userId").val(),{expires:30});
+				Cookies.set("rememberme","true",{expires:30});
 				
 			}else{
-				deleteCookie("userid");
-				deleteCookie("rememberme");
+				Cookies.remove("userid");
+				Cookies.remove("rememberme");
 				
 			}
 			//만약에 rememberme  체크박스가 체크되어있지 않은경우
