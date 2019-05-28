@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,6 +48,11 @@ public class LoginController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		logger.debug("loginController doGet()");
+		
+		for(Cookie cookie : request.getCookies()){
+			
+			logger.debug("cookie : {}, {}",cookie.getName(),cookie.getValue());
+		}
 		// login 화면을 처리해줄 누국가에게 위임
 
 		// 단순 login 화면을 html로 응답을 생성해주는 작업이 필요
@@ -82,6 +88,13 @@ public class LoginController extends HttpServlet {
 	// 로그인 요청을 처리
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		logger.debug("rememberme : {}",request.getParameter("rememberme"));
+		
+		
+		
+		
 		logger.debug("parameter userId :()", request.getParameter("userId"));
 		logger.debug("parameter password :()", request.getParameter("password"));
 
@@ -91,6 +104,23 @@ public class LoginController extends HttpServlet {
 		// 일치
 		if (userId.equals("brown") && password.equals("brown1234")) {
 			
+			
+			
+			int cookieMaxAge=0;
+			
+			if(request.getParameter("rememberme")!=null){
+				
+				cookieMaxAge=60*60*24*30;
+				
+				Cookie userIdCookie = new Cookie("userid",userId);
+				userIdCookie.setMaxAge(cookieMaxAge);
+				
+				Cookie rememberMeCookie = new Cookie("rememberme","true");
+				rememberMeCookie.setMaxAge(cookieMaxAge);
+				
+				response.addCookie(userIdCookie);
+				response.addCookie(rememberMeCookie);
+			}
 			//session에 사용자 정보를 넣어준다 사용빈도가 높기 때문에
 
 			HttpSession session= request.getSession();

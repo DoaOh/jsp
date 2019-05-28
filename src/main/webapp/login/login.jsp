@@ -49,7 +49,7 @@
 		}
 		$("#signinBtn").on("click",function(){
 		
-			//만약에 rememberme  체크박스가 체크되어있는경주 
+			/* //만약에 rememberme  체크박스가 체크되어있는경주 
 			//사용자 아이디를 userid 쿠기로 저자 
 			//true 값을 rememberme 
 			
@@ -65,7 +65,7 @@
 			//만약에 rememberme  체크박스가 체크되어있지 않은경우
 			//userid rememberme 쿠키에서 삭재
 			
-			
+			 */
 			$("#frm").submit();
 			
 		});
@@ -130,7 +130,7 @@
          
         <div class="checkbox">
           <label>
-            <input id="rememberme" type="checkbox" value="remember-me"> Remember me
+            <input id="rememberme" name="rememberme" type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
         <button id="signinBtn"class="btn btn-lg btn-primary btn-block" type="button">Sign in</button>
