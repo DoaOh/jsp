@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.or.ddit.myBatis.MyBataisUtill;
+import kr.or.ddit.paging.model.PageVo;
 import kr.or.ddit.user.model.UserVo;
 
 import org.apache.ibatis.session.SqlSession;
@@ -55,5 +56,23 @@ public class UserDao implements IuserDao {
 		return uservo;
 	
 	
+	}
+
+	
+	
+	@Override
+	public List<UserVo> userPagingList(PageVo pageVo) {
+		SqlSession sqlSession = MyBataisUtill.getSqlSession();
+		List<UserVo> userList = sqlSession.selectList("user.userPagingList",pageVo);
+		sqlSession.close();
+		return userList;
+	}
+
+	@Override
+	public int usersCnt() {
+		SqlSession sqlSession = MyBataisUtill.getSqlSession();
+		int userCnt =(Integer)sqlSession.selectOne("user.usersCnt");
+		sqlSession.close();
+		return userCnt;
 	}	
 }

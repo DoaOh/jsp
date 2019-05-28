@@ -1,16 +1,14 @@
 package kr.or.ddit.user.service;
 
-import java.io.IOException;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.ibatis.session.SqlSession;
-
-import kr.or.ddit.myBatis.MyBataisUtill;
+import kr.or.ddit.paging.model.PageVo;
+import kr.or.ddit.user.dao.IuserDao;
+import kr.or.ddit.user.dao.UserDao;
 import kr.or.ddit.user.model.UserVo;
 
 public class UserService implements IuserService{
@@ -24,20 +22,54 @@ public class UserService implements IuserService{
 	public List<UserVo> userList() {
 		
 	
-       SqlSession sqlSession = MyBataisUtill.getSqlSession();
-		List<UserVo> userList = sqlSession.selectList("user.userList");
+	IuserDao dao = new UserDao();
 		
-		return userList;
+		return dao.userList();
+	
 	}
 
 	@Override
 	public UserVo getUser(String userId) {
 
-		SqlSession sqlSession = MyBataisUtill.getSqlSession();
-		UserVo uservo = sqlSession.selectOne("user.userInfo",userId);
+IuserDao dao = new UserDao();
 		
-		return uservo;
+		return dao.getUser(userId);
 	}
+
+	
+	public Map<String, Object>userPagingList(PageVo pageVo) {
+		/*
+		1.list<userVo>  userCnt를 필드로 하는 vo
+	    2.List<Object> resultList =new ArrayList<Object>()
+		resultList.add(userList);
+		resultList.add(userCnt);
+		
+		3.Map<String Objsect> resultMap = enw HashMap<String ,Object>();
+		resultMap.put("userList",userList)
+		resultMap.put("userCnt",userCnt)*/
+		
+		IuserDao dao = new UserDao();
+	
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		resultMap.put("userList", dao.userPagingList(pageVo));
+		
+		
+		//resultMap.put("usersCnt", dao.usersCnt());
+		
+		int usersCnt =dao.usersCnt();
+		
+		int paginationSize =(int) Math.ceil((double)usersCnt/pageVo.getPageSize());
+		resultMap.put("paginationSize",paginationSize);
+		
+		 
+		return resultMap;
+	}
+
+	
+	
+	
+
 
 	
 	

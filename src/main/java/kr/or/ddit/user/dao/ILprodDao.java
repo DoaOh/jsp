@@ -4,19 +4,17 @@ import java.util.List;
 import java.util.Map;
 
 import kr.or.ddit.paging.model.PageVo;
+import kr.or.ddit.user.model.LprodVo;
 import kr.or.ddit.user.model.UserVo;
 
-public interface IuserDao {
+public interface ILprodDao {
 	
 
-List<UserVo> userList();
+List<LprodVo> lprodList();
 	
-	
- UserVo getUser(String userId);	
  
+ List<LprodVo> lprodPagingList(PageVo pageVo);
  
- List<UserVo> userPagingList(PageVo pageVo);
- 
- int usersCnt();
+ int lprodCnt();
  
 }

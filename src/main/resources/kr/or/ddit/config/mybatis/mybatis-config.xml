@@ -6,6 +6,9 @@
 
 	<typeAliases>
 		<typeAlias alias="userVo" type="kr.or.ddit.user.model.UserVo" />
+		<typeAlias alias="lprodVo" type="kr.or.ddit.user.model.LprodVo" />
+		
+		<typeAlias alias="PageVo" type="kr.or.ddit.paging.model.PageVo" />
 	</typeAliases>
 
 	<environments default="development">

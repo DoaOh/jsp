@@ -1,9 +1,10 @@
-package kr.or.ddit.user.Dao;
+package jsp;
 
 import static org.junit.Assert.*;
 
 import java.util.List;
 
+import kr.or.ddit.paging.model.PageVo;
 import kr.or.ddit.user.dao.IuserDao;
 import kr.or.ddit.user.dao.UserDao;
 import kr.or.ddit.user.model.UserVo;
@@ -106,5 +107,56 @@ public class UserDaoTest {
 	// 페이지당 몇건씩 데이터를 보여줄건지? 쿼리 실행 파라미터 
 	//정렬순서 로직 파라미터화 시킬수 있다 
 	//사용자 아이디 순으로 정렬
+	
+	
+	
+	
+	
+	/**
+	 * Method : UserPagingListTest
+	 * 작성자 : PC02
+	 * 변경이력 :
+	 * Method 설명 :사용자 페이징 리스트 조회 테스트 
+	 */
+	@Test
+	public void UserPagingListTest() {
+		
+		//테스트 작성
+		/***Given***/
+	
+		PageVo pageVo = new PageVo(1,10);
+	/*	pageVo.setPage(1);
+		pageVo.setPageSize(10);
+		*/
+		/***When***/
+		List<UserVo> userList = userDao.userPagingList(pageVo);
+
+		/***Then***/
+	
+		
+		assertNotNull(userList);
+		assertEquals(10, userList.size());
+
+	}
+	
+	
+	@Test
+	public void usersCntTest() {
+		
+		
+		/***Given***/
+
+		
+		/***When***/
+int usersCnt = userDao.usersCnt();
+		/***Then***/
+	
+		
+
+		assertEquals(106, usersCnt);
+
+	}
+	
+	
 
 }
