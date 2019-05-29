@@ -10,7 +10,7 @@
 
 <h2>SUM</h2>
 
-<form action="<%=request.getContextPath()%>/sumCalculation" method="post">
+<form action="${pageContext.request.contextPath}/sumCalculation" method="post">
 
 
 <input type="text" name="start">

@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,33 +49,32 @@
 						<h2 class="sub-header">사용자</h2>
 						<div class="table-responsive">
 							<table class="table table-striped">
+							
 								<tr>
-									<th>사용자 아이디</th>
+									<th>사용자 아이디(el)</th>
 									<th>사용자 이름</th>
 									<th>사용자 별명</th>
 									<th>등록일시</th>
 								</tr>
 								
 								
-								<%
-								List<UserVo>userList=(List<UserVo>)request.getAttribute("userPagingList");
-		
 								
-								%>
+								<%List<UserVo>userList=(List<UserVo>)request.getAttribute("userPagingList"); %>
 								
-								<%for(int i =0; i<userList.size();i++){
-									
-									
-									
-								%>
+                          <c:forEach items="${userPagingList}" var="user" >
+								
+								
 								<tr>
-									<td><%=userList.get(i).getName()%></td>
-									<td><%=userList.get(i).getUserId()%></td>
-									<td><%=userList.get(i).getAlias()%></td>
+									<td>${user.userId}</td>
+									<td>${user.name}</td>
+									<td>${user.alias}</td>
 									<td></td>
 								</tr>
+								
+								</c:forEach>
+								
+								
 							
-								<% } %>
 							</table>
 							
 						</div>
@@ -93,13 +93,6 @@
 							
 							
 							
-							
-							
-					 
-							
-							
-						
-							
 							<%
 							PageVo pageVo =(PageVo)request.getAttribute("pageVo");
 							
@@ -116,16 +109,14 @@
 							<%}else{ %>
 							 <li >
 							 
-							<a href="<%=request.getContextPath()%>/userPagingList?page=<%=pageVo.getPage()-1%>&pageSize=<%=pageVo.getPageSize()%>">«</a>
+							<a href="${pageContext.request.contextPath}/userPagingList?page=<%=pageVo.getPage()-1%>&pageSize=<%=pageVo.getPageSize()%>">«</a>
 							 
 							 
 							 </li>
 							<%}%>
 							 
 							
-0							
-							
-							
+					
 							
 							<%
 							for(int i = 1; i <= paginationSize; i++){%>
@@ -139,7 +130,7 @@
 								<span><%=i %></span>
 							<%} 
 							else{%>
-							<a href="<%=request.getContextPath()%>/userPagingList?page=<%=i%>&pageSize=<%=pageVo.getPageSize()%>"><%=i %></a>
+							<a href="${pageContext.request.contextPath}/userPagingList?page=<%=i%>&pageSize=<%=pageVo.getPageSize()%>"><%=i %></a>
 							</li>
 							<%
 							}
@@ -155,7 +146,7 @@
 							<%}else{ %>
 							 <li >
 							 
-							<a href="<%=request.getContextPath()%>/userPagingList?page=<%=pageVo.getPage()+1%>&pageSize=<%=pageVo.getPageSize()%>">»</a>
+							<a href="${pageContext.request.contextPath}/userPagingList?page=<%=pageVo.getPage()+1%>&pageSize=<%=pageVo.getPageSize()%>">»</a>
 							 
 							 
 							 </li>

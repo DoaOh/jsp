@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="<%=request.getContextPath()%>/jsp/redirectProcess.jsp">
+	<form action="${pageContext.request.contextPath}/jsp/redirectProcess.jsp">
 		<input type="text" name="userId" value="sally" />
 		 <input type="submit"value="redirect" />
 	</form>
