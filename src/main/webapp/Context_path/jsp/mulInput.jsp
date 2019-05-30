@@ -10,7 +10,7 @@
 
 <h2>곱하기곱하기</h2>
 
-<form action="<%=request.getContextPath()%>/mulcal" method="post">
+<form action="${pageContext.request.contextPath}/mulcal" method="post">
 
 <input type="text"  name="para1">
 <input type="text"  name="para2">

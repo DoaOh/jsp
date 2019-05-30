@@ -52,26 +52,19 @@
 									<th>등록일시</th>
 								</tr>
 								
+							
 								
-								<%
-								List<LprodVo>lprodList=(List<LprodVo>)request.getAttribute("lprodList");
-		
+								<c:forEach items="${lprodList}" var="lprod" >
 								
-								%>
-								
-								<%for(int i =0; i<lprodList.size();i++){
-									
-									
-									
-								%>
+					
 								<tr>
-									<td><%=lprodList.get(i).getLprod_id()%></td>
-									<td><%=lprodList.get(i).getLprod_gu()%></td>
-									<td><%=lprodList.get(i).getLprod_nm()%></td>
+									<td>${lprod.lprod_id}</td>
+									<td>${lprod.lprod_gu}</td>
+									<td>${lprod.lprod_nm}</td>
 									<td></td>
 								</tr>
-							
-								<% } %>
+								
+								</c:forEach>
 							</table>
 							
 						</div>

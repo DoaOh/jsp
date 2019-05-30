@@ -11,14 +11,14 @@
 <!-- 190523 -->
 
 
-<h2>테스트</h2>
+	<h2>테스트</h2>
 <form action="${pageContext.request.contextPath}/scope/scopeReceive.jsp" method="post">
 
 
-page   <input type="text" name="pageParam" value="pageValue"/><br>
-request<input type="text" name="requestParam" value="requestValue"/><br>
-session<input type="text" name="sessionParam" value="sessionValue"/><br>
-application<input type="text" name="applicationParam" value="applicationValue"/><br>
+	page   <input type="text" name="pageParam" value="pageValue"/><br>
+	request<input type="text" name="requestParam" value="requestValue"/><br>
+	session<input type="text" name="sessionParam" value="sessionValue"/><br>
+	application<input type="text" name="applicationParam" value="applicationValue"/><br>
 <button>전송하기</button>
 
 </form>

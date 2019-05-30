@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.user.model.UserVo;
+import kr.or.ddit.user.service.IuserService;
+import kr.or.ddit.user.service.UserService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +43,9 @@ import org.slf4j.LoggerFactory;
 public class LoginController extends HttpServlet {
 
 	private Logger logger = LoggerFactory.getLogger(LoginController.class);
+	
+	private IuserService userService;
+    
 
 	private static final long serialVersionUID = 1L;
 
@@ -49,10 +54,10 @@ public class LoginController extends HttpServlet {
 
 		logger.debug("loginController doGet()");
 		
-		for(Cookie cookie : request.getCookies()){
+		//for(Cookie cookie : request.getCookies()){
 			
-			logger.debug("cookie : {}, {}",cookie.getName(),cookie.getValue());
-		}
+			//logger.debug("cookie : {}, {}",cookie.getName(),cookie.getValue());
+		//}
 		// login 화면을 처리해줄 누국가에게 위임
 
 		// 단순 login 화면을 html로 응답을 생성해주는 작업이 필요
@@ -85,6 +90,11 @@ public class LoginController extends HttpServlet {
 
 	}
 
+	@Override
+	public void init() throws ServletException {
+		userService=new UserService();
+	}
+	
 	// 로그인 요청을 처리
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -100,53 +110,61 @@ public class LoginController extends HttpServlet {
 
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
+		
+		
+		request.setAttribute("userList", userService.userList());
+		
+		
+		UserVo userIddb = userService.getUser(userId);
+		//UserVo passworddb = userService.getUser(password);
+		 String a=userIddb.getUserId();
+		 String b=userIddb.getPass();
+		
+		
 
 		// 일치
-		if (userId.equals("brown") && password.equals("brown1234")) {
+		if (userIddb !=null && userId.equals(a) && password.equals(b)) {
 			
 			
 			
+		//if (userId.equals("brown") && password.equals("brown1234")) {
 			int cookieMaxAge=0;
-			
 			if(request.getParameter("rememberme")!=null){
-				
-				cookieMaxAge=60*60*24*30;
-				}
+				cookieMaxAge =60*60*24*30;
+			}	
+			Cookie userIdCookie = new Cookie("userid",userId);
+			userIdCookie.setMaxAge(cookieMaxAge);
+			
+			Cookie rememberMeCookie = new Cookie("rememberme","true");
+			rememberMeCookie.setMaxAge(cookieMaxAge);
+			
+			response.addCookie(userIdCookie);
+			response.addCookie(rememberMeCookie);
 			
 			
 			
-				
-				Cookie userIdCookie = new Cookie("userid",userId);
-				userIdCookie.setMaxAge(cookieMaxAge);
-				
-				Cookie rememberMeCookie = new Cookie("rememberme","true");
-				rememberMeCookie.setMaxAge(cookieMaxAge);
-				
-				response.addCookie(userIdCookie);
-				response.addCookie(rememberMeCookie);
+			// session에 사용자 정보를 넣어준다 (사용빈도가 높기때문에)
+//			request.getSession().setAttribute(name, value);
+			HttpSession session =request.getSession();
+			session.setAttribute("USER_INFO",userIddb );
 			
-			//session에 사용자 정보를 넣어준다 사용빈도가 높기 때문에
-
-			HttpSession session= request.getSession();
-			session.setAttribute("USER_INFO", new UserVo("브라운","brown","곰"));
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/main.jsp");
 			rd.forward(request, response);
-
-			// 불일치
-		} else {
-			// forword 사용불가능
-			// dispatch 방시으로 위임이 불가 GERT POST
-
-			response.sendRedirect(request.getContextPath() + "/login");
+			
+		}else{	// 불일치하면 (아이디 혹은 비밀번호를 잘못 입력) : 로그인화면으로 이동
+			// 현재상황에서는 forward 사용 불가능 
+			// 로그인화면으로 이동 : localhost/jsp/login
+			// 현상황에서 /jsp/login url로 dispatch 방식으로 위임이 불가
+			// request.getMethod(); 	//GET, POST
+			
+			request.getRequestDispatcher("/login/login.jsp").forward(request, response);
+			
+			//response.sendRedirect(request.getContextPath() + "/login");
+			
 		}
-
-		// 사용자 파라미터
-		// db에서 해당사용자의 정보조회(service dao)
-		// 해당사용자의 정보를 ㅏㅣㄹ용하여 사용자가 보낸 파라미터가 일치하는지 검사
-
-		// user brown passs brown1234 값일떄 통과 그의외값은 불일치임
-
+		
+		
 	}
 
 }

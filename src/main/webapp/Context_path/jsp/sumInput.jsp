@@ -12,7 +12,6 @@
 
 <form action="${pageContext.request.contextPath}/sumCalculation" method="post">
 
-
 <input type="text" name="start">
 <input type="text" name="end">
 
