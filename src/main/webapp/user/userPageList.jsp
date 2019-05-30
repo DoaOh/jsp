@@ -21,9 +21,44 @@
 <!--css js-->
 <%@include file="/common/basiclib.jsp"%>
 
-</head>
 <style>
+.userTr:hover{
+cursor:pointer;
+}
 </style>
+
+<script>
+
+$(document).ready(function(){
+	
+	//사용자 테그 이벤트 등록
+	$(".userTr").on("click",function(){
+		console.log("userTr click");
+		
+		/* 
+		userId를 획득하는 방법 
+		$(this).find(".userId").text();
+		$(this).data
+		 */
+		 
+		 
+		 //사용자 아이디를 $userId 값으로 설정해줌 
+		 var userId = $(this).find(".userId").text();
+		 $("#userId").val(userId);
+		 //frm 을 이용하여 submmit
+
+		 $("#frm").submit();
+	});
+	
+});
+</script>
+
+
+
+
+
+</head>
+
 
 <body>
 
@@ -46,6 +81,16 @@
 				<div class="row">
 					<div class="col-sm-8 blog-main">
 						<h2 class="sub-header">사용자</h2>
+						
+						
+<!-- 						사용자 상세조회 페이지 -->
+						<form id="frm" action="${pageContext.request.contextPath}/user" method ="get">
+						
+						<input type="hidden" id="userId" name="userId">
+						</form>
+						
+						
+						
 						<div class="table-responsive">
 							<table class="table table-striped">
 
@@ -61,8 +106,8 @@
 								<c:forEach items="${userPagingList}" var="user">
 
 
-									<tr>
-										<td>${user.userId}</td>
+									<tr class="userTr" data-userid="${user.userId}">
+										<td class="userId">${user.userId}</td>
 										<td>${user.name}</td>
 										<td>${user.alias}</td>
 										<td></td>
