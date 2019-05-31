@@ -9,7 +9,7 @@
 <body>
 
 
-<!-- localhoist/jsp/jsp/timesTable.jsp -->
+<!-- localhost/jsp/jsp/timesTable.jsp -->
 
 
 <% String param1 = request.getParameter("param1"); %>

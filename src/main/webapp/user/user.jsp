@@ -23,26 +23,30 @@
 </head>
 <style>
 
+.col-sm-2 control-label{
+ text-align: center;
 
+}
 
 .form-horizontal{
 position:relative;
-top:50px;
-     left:45%;
+top:70px;
+     left:29%;
+    
    
 }
 
 .form-group2{
 
 position:absolute;
-
-     left:350px;
+     left:500px;
 
 }
 
 .form-group3{
 
 position:absolute;
+top:20px;
  left:45%;
      left:300px;
 }
@@ -83,10 +87,12 @@ position:absolute;
 				
 						<div class="col-sm-10">
 							<img src="${pageContext.request.contextPath}/profile?userId=${userinfo.userId}"/>
-									<label for="userNm" class="col-sm-2 control-label">    </label>
-									<label for="userNm" class="col-sm-2 control-label">    </label>
-									<label for="userNm" class="col-sm-2 control-label">    </label>
-									<label for="userNm" class="col-sm-2 control-label">    </label>
+									
+									<label for="userNm" class="col-sm-2 control-label">   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+									<label for="userNm" class="col-sm-2 control-label">   &nbsp; &nbsp;&nbsp; </label>
+									<label for="userNm" class="col-sm-2 control-label">&nbsp; &nbsp;&nbsp; </label>
+									<label for="userNm" class="col-sm-2 control-label">&nbsp; &nbsp;</label>
+									
 						</div>
 					</div>
 				
@@ -159,8 +165,7 @@ position:absolute;
 					
 	
 					<br>
-					<br>
-					<br>
+					
 			
 					<div class="form-group2">
 						<div class="col-sm-offset-2 col-sm-10">
