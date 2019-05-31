@@ -3,6 +3,8 @@ package jsp;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,42 +30,8 @@ public class UserServiceTest {
 			.getLogger(UserServiceTest.class);
 	
 	
-	
-	
-	
-	private IuserDao userDao;
-	
-	
-	@BeforeClass
-	public static void beforeclass(){
-		logger.debug("beforeclass");
-		
-	}
-	
 
-	@Before
-	public void setup(){
-		
-		 userDao = new UserDao();
-
-		logger.debug("setup");
-		
-	}
-	
-	@After
-	public void teardown(){
-		logger.debug("teardown");
-	}
-	
-	
-	@AfterClass
-	public static void afterClass(){
-		logger.debug("afterclass");
-		
-	}
-	
-	
-	
+	IuserService userService = new UserService();
 	
 	@Test
 	public void UserListTest() {
@@ -71,7 +39,7 @@ public class UserServiceTest {
 		/***Given***/
 		
 		/***When***/
-		List<UserVo> userList = userDao.userList();
+		List<UserVo> userList = userService.userList();
 		
 		/***Then***/
 		assertEquals("black",userList.get(0).getUserId());
@@ -89,7 +57,7 @@ public class UserServiceTest {
 		String userId= "black";
 
 		/***When***/
-		UserVo uservo  =userDao.getUser(userId);
+		UserVo uservo  =userService.getUser(userId);
 
 		/***Then***/
 		assertEquals("김대용",uservo.getName());
@@ -124,10 +92,6 @@ public class UserServiceTest {
 	}
 	
 	
-
-	
-	
-	
 	@Test
 	public void ceilTest() {
 		
@@ -150,6 +114,48 @@ public class UserServiceTest {
 
 	}
 	
+	
+	
+	
+	
+	
+	@Test
+	public void insertUserTest(){
+		
+		IuserService userService = new UserService();
+		/***Given***/
+		//사용자 정보를 담고있는 vo객체 준비 
+		
+
+		 SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd");
+		 
+		 UserVo userVo=null;
+		
+		try {
+			userVo= new UserVo("이름","아이디","ali","pass","addr1","addr2","zip",sdf.parse("2019-05-31"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		
+		/***When***/
+		
+		int insertCnt=userService.insertUser(userVo);
+
+		/***Then***/
+
+		assertEquals(1, insertCnt);
+		
+		//data 삭제 
+		userService.deleteUser(userVo.getUserId());
+		
+		
+		
+	}
+	
+	
+	
+
 	
 	
 }

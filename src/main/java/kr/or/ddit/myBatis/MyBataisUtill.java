@@ -29,12 +29,6 @@ public class MyBataisUtill {
 			e.printStackTrace();
 		}
 		
-		
-		
-		
-		
-
-		
 	}
 	
 	

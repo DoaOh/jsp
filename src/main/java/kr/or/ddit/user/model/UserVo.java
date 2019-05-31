@@ -1,6 +1,7 @@
 package kr.or.ddit.user.model;
 
-import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class UserVo {
@@ -11,20 +12,30 @@ public class UserVo {
 	private String alias; 
 	private String pass;
 	private String addr1;
-	public String getAddr1() {
-		return addr1;
-	}
-	public void setAddr1(String addr1) {
-		this.addr1 = addr1;
-	}
-
 	private String addr2;
     private String zipcd;
     private Date birth;
     private String path;
     private String filename;
 	
-	
+    
+    
+    public String getbirth() {
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd");
+    	if(birth==null){
+    		return"";
+    		
+    	}
+    	
+		return sdf.format(birth);
+	}
+    
+    public String getAddr1() {
+		return addr1;
+	}
+	public void setAddr1(String addr1) {
+		this.addr1 = addr1;
+	}
 	
 	public String getName() {
 		return name;
@@ -86,26 +97,25 @@ public class UserVo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserVo(String name, String userId, String alias, String pass,
-			String addr2, String zipcd, Date birth, String path, String filename) {
+	public UserVo(String name, String userId, String alias, String pass,String addr1,
+			String addr2, String zipcd, Date birth) {
 		super();
 		this.name = name;
 		this.userId = userId;
 		this.alias = alias;
 		this.pass = pass;
+		this.addr1 = addr1;
 		this.addr2 = addr2;
 		this.zipcd = zipcd;
 		this.birth = birth;
-		this.path = path;
-		this.filename = filename;
+		
 	}
 	
 	@Override
 	public String toString() {
 		return "UserVo [name=" + name + ", userId=" + userId + ", alias="
 				+ alias + ", pass=" + pass + ", addr2=" + addr2 + ", zipcd="
-				+ zipcd + ", birth=" + birth + ", path=" + path + ", filename="
-				+ filename + "]";
+				+ zipcd + ", birth=" + birth + "]";
 	}
 	
     

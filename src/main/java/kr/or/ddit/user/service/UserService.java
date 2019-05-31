@@ -69,6 +69,37 @@ IuserDao dao = new UserDao();
 	
 	
 	
+	@Override
+	public int insertUser(UserVo userVo) {
+
+    IuserDao dao = new UserDao();
+		
+		return dao.insertUser(userVo);
+	}
+
+	
+	
+	
+	
+	
+	@Override
+	public int deleteUser(String userId) {
+
+	    IuserDao dao = new UserDao();
+			
+			return dao.deleteUser(userId);
+	}
+
+	
+	@Override
+	public int updateUser(UserVo userVo) {
+		 IuserDao dao = new UserDao();
+		return dao.updateUser(userVo);
+	}
+
+	
+	
+	
 
 
 	

@@ -2,6 +2,9 @@ package jsp;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import kr.or.ddit.paging.model.PageVo;
@@ -154,9 +157,49 @@ int usersCnt = userDao.usersCnt();
 		
 
 		assertEquals(106, usersCnt);
-
 	}
 	
 	
+	
+	@Test
+	public void insertUserTest(){
+		
+		
+		/***Given***/
+		//사용자 정보를 담고있는 vo객체 준비 
+		
+
+		 SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd");
+		 
+		 UserVo userVo=null;
+		
+		try {
+			userVo= new UserVo("name","id","ali","pass","addr1","addr2","zip",sdf.parse("2019-05-31"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		
+		/***When***/
+		
+		int insertCnt=userDao.insertUser(userVo);
+
+		/***Then***/
+
+		assertEquals(1, insertCnt);
+		
+		int deleteCnt=userDao.deleteUser(userVo.getUserId());
+		
+		assertEquals(1, deleteCnt);
+		
+	}
+	
+	
+
+
+	
+	
+	
+
 
 }

@@ -14,13 +14,26 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="icon" href="../../favicon.ico">
-
 <title>사용자 상세조회</title>
 <!--css js-->
 <%@include file="/common/basiclib.jsp"%>
 
-</head>
+<script>
+$(document).ready(function(){
+	
+	$("#modify").on("click",function(){
+		
+		$("#frm").submit();
+		
+		
+	})
+	
+	
+})
+
+
+</script>
+
 <style>
 
 .col-sm-2 control-label{
@@ -52,6 +65,8 @@ top:20px;
 }
 
 </style>
+
+</head>
 <body>
 
 	<!--header-->
@@ -72,16 +87,13 @@ top:20px;
 			<div class="col-sm-8 blog-main">
 			
 			
+			
 					
 			<h2 class="sub-header">사용자 상세정보</h2>
 			
 				
-
-
-				<form class="form-horizontal" role="form">
-				
-				
-				
+	<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath}/userModify" method="get">
+		<input type="hidden" id="userId" name="userId" value="${userinfo.userId}"/>
 				
 				<div class="form-group3">
 				
@@ -112,7 +124,7 @@ top:20px;
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">사용자 아이디</label>
 						<div class="col-sm-10">
-							<label class="control-label">${userinfo.userId}</label>
+							<label  class="control-label">${userinfo.userId}</label>
 						</div>
 					</div>
 
@@ -167,12 +179,13 @@ top:20px;
 					<br>
 					
 			
-					<div class="form-group2">
-						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-default">사용자 수정</button>
-						</div>
-					</div>
-	
+					<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									
+									<button type="submit" class="btn btn-default">사용자 수정</button>
+								</div>
+							</div>
+							
 					
 				</form>
 

@@ -53,25 +53,16 @@ $(document).ready(function(){
 });
 </script>
 
-
-
-
-
 </head>
-
 
 <body>
 
 
 	<!--header-->
 	<%@include file="/common/header.jsp"%>
-
-
 	<div class="container-fluid">
 		<div class="row">
-
-
-			<!--left-->
+		<!--left-->
 			<%@include file="/common/left.jsp"%>
 
 
@@ -121,7 +112,8 @@ $(document).ready(function(){
 
 						</div>
 
-						<a class="btn btn-default pull-right">사용자 등록</a>
+						<a href="${pageContext.request.contextPath}/userForm" class="btn btn-default pull-right">사용자 등록</a>
+						
 
 
 						<!-- 		
@@ -221,11 +213,7 @@ $(document).ready(function(){
 										<%-- 	<%}%> --%>
 									</c:otherwise>
 								</c:choose>
-								<c:set var="aaa" value="<font color=red>ㅋㅋㅋ</font>"></c:set>
-								<c:out value="${aaa}" escapeXml="true"></c:out>
-
-
-
+								
 							</ul>
 						</div>
 					</div>

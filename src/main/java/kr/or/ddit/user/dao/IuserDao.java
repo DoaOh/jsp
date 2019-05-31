@@ -18,5 +18,14 @@ List<UserVo> userList();
  List<UserVo> userPagingList(PageVo pageVo);
  
  int usersCnt();
+ 																												
+ 
+int insertUser(UserVo userVo);
+ 
+int deleteUser(String userId);
+
+
+int updateUser(UserVo userVo);
+
  
 }

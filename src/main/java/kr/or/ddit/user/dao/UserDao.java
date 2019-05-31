@@ -75,4 +75,34 @@ public class UserDao implements IuserDao {
 		sqlSession.close();
 		return userCnt;
 	}	
+	
+	
+	@Override
+	public int insertUser(UserVo userVo){
+		SqlSession sqlSession = MyBataisUtill.getSqlSession();
+		int insertCnt=sqlSession.insert("user.insertUser",userVo);
+		sqlSession.commit();
+		sqlSession.close();
+		return insertCnt;
+	}
+
+	@Override
+	public int deleteUser(String userId) {
+		
+		SqlSession sqlSession = MyBataisUtill.getSqlSession();
+		int deleteCnt=sqlSession.insert("user.deleteUser",userId);
+		sqlSession.commit();
+		sqlSession.close();
+		return deleteCnt;
+	}
+
+	@Override
+	public int updateUser(UserVo userVo) {
+		SqlSession sqlSession = MyBataisUtill.getSqlSession();
+		int updateCnt=sqlSession.insert("user.updateUser",userVo);
+		sqlSession.commit();
+		sqlSession.close();
+		return updateCnt;
+	}
+	
 }

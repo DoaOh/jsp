@@ -42,29 +42,24 @@ public class profileController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//사용자 아이디를 파라미터로 부터 확인 
-String userId = request.getParameter("userId");
+		String userId = request.getParameter("userId");
 		
 		
-      // 사용자 정보를 조회 
-		UserVo userIddb = userService.getUser(userId);
-		
+       // 사용자 정보를 조회 
 		UserVo userVo = userService.getUser(userId);
 		
+		//path정보로 file을 읽어온다 
 		ServletOutputStream sos=  response.getOutputStream();
 		
 		
 		
 		
 		File file = new File(userVo.getPath());
-	
 		FileInputStream fis = new FileInputStream(file);
-		
-		int len=0;
-		
 		byte[] buffer = new byte[512];
 		
 		
-		while((len = fis.read(buffer ,0 ,512)) !=-1){
+		while( fis.read(buffer ,0 ,512) !=-1){
 			sos.write(buffer);
 		}
 		 
@@ -72,14 +67,9 @@ String userId = request.getParameter("userId");
 		sos.close();
 		
 		
-		
-		
-		
-	
 		//PATH 정보로  file을 읽어 들여서 
 		//response 객체에 스트림으로 써준다 
-		
-		request.getRequestDispatcher("/user/user.jsp").forward(request, response);
+		//request.getRequestDispatcher("/user/user.jsp").forward(request, response);
 		
 		
 	}

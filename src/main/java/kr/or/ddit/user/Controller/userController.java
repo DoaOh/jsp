@@ -37,30 +37,18 @@ public class userController extends HttpServlet {
 		
 		
 		//request 객체로 부터 사용자 아이디 파라미터 획득
-		
 		String userId = request.getParameter("userId");
 		
 		
 		//사용자 아이디로 사용자 정보를 조회 
 		UserVo userIddb = userService.getUser(userId);
 		
-		/*
-		 String id =userIddb.getUserId();
-		 String name =userIddb.getName();
-		 String alias =userIddb.getAlias();
-		 String addr =userIddb.getAddr1();
-		 String addr2 =userIddb.getAddr2();
-		 String zibcd =userIddb.getZipcd();
-		 Date bir =userIddb.getBirth();*/
-			
 		
-		//조회 결과를 request 객체에 속서응로 저장 
-
+		//조회 결과를 request 객체에 속성으로 저장 
 		request.setAttribute("userinfo",userIddb );
 		
 		
-		//화면을 담당하는  /user/user.jsp
-		
+		//화면을 담당하는 /user/user.jsp
 		request.getRequestDispatcher("/user/user.jsp").forward(request, response);
 		
 		
@@ -71,24 +59,9 @@ public class userController extends HttpServlet {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 	}
 
 }

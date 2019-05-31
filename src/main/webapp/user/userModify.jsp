@@ -48,23 +48,16 @@ $(document).ready(function(){
         
     });
         	
-        	
-        	$("#userRegBtn").on("click",function(){
+        	$("#userModifyBtn").on("click",function(){
         		
-        		console.log("userRegBtn click");
-        		//유효성 체크 
-        		
-        		//여기까지 도달하면  유효성 검사 완료 
         		$("#frm").submit();
-        		
-        		
         	});
         	
     //데이터 초기화 함수 
-   ///dataInit();
+    //dataInit();
  });
  
- function dataInit(){
+/*  function dataInit(){
 	 
 	 $("#userId").val("userTest");
 	 $("#userNm").val("userTest");
@@ -77,7 +70,7 @@ $(document).ready(function(){
 	
 	 
  }
- 
+  */
 
 </script>
 
@@ -111,15 +104,11 @@ top:50px;
 			
 			
 					
-			<h2 class="sub-header">사용자 등록</h2>
+			<h2 class="sub-header">사용자 정보 수정</h2>
 			
-				<form id="frm" class="form-horizontal" role="form"
-				action="${pageContext.request.contextPath}/userForm" method="post">
 				
-				
-				
-				
-					
+			<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath}/userModify" method="post">
+				<input type="hidden" id="userId" name="userId" value="${userinfo.userId}"/>		
 				<div class="form-group">
 				<label for="userProfileName" class="col-sm-2 control-label">프로필 사진</label>
 						
@@ -133,9 +122,11 @@ top:50px;
 			
 						<label for="userId" class="col-sm-2 control-label">아이디</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="userId" name="userId"
-								placeholder="사용자 아이디" value="${param.userId}">
-							
+						<!-- 	<input type="text" class="form-control" id="userId" name="userId"
+								placeholder="사용자 아이디" readonly="readonly">
+							 -->
+							 
+						<label class="control-label">${userinfo.userId}</label> 
 						</div>
 					</div>
 				
@@ -146,7 +137,7 @@ top:50px;
 						<label for="userNm" class="col-sm-2 control-label"> 이름</label>
 						
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="userNm" name="userNm" placeholder="사용자 이름"  value="${param.userNm}">
+							<input type="text" class="form-control" id="userNm" name="userNm" placeholder="사용자 이름"  value="${userinfo.name}">
 						</div>
 				</div>
 				
@@ -156,7 +147,7 @@ top:50px;
 						<label for="userAlias" class="col-sm-2 control-label">별명</label>
 						
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="userAlias" name="userAlias" placeholder="별명" value="${param.userAlias}">
+							<input type="text" class="form-control" id="userAlias" name="userAlias" placeholder="별명" value="${userinfo.alias}">
 						</div>
 				</div>
 				
@@ -164,9 +155,8 @@ top:50px;
 				<div class="form-group">
 				
 						<label for="userPass" class="col-sm-2 control-label"> 비밀번호</label>
-						
 						<div class="col-sm-10">
-							<input type="password" class="form-control" id="userPass" name="userPass" placeholder="비밀번호" value="${param.userPass}">
+							<input type="password" class="form-control" id="userPass" name="userPass" placeholder="비밀번호" >
 						</div>
 				</div>
 				
@@ -176,7 +166,7 @@ top:50px;
 						<label for="userAddr1" class="col-sm-2 control-label"> 주소</label>
 						
 						<div class="col-sm-9">
-							<input type="text"  class="form-control" id="userAddr1" name="userAddr1" placeholder="주소" readonly="readonly" >
+							<input type="text"  class="form-control" id="userAddr1" name="userAddr1" placeholder="주소" value="${userinfo.addr1}" readonly="readonly" >
 						
 						
 						</div> <a id="addrSearchBtn" class="btn btn-default">&nbsp;&nbsp;주소&nbsp;&nbsp;</a>
@@ -190,7 +180,7 @@ top:50px;
 						<label for="userAddr2" class="col-sm-2 control-label">상세주소</label>
 						
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="userAddr2" name="userAddr2" placeholder="상세주소" value="${param.userAddr2}">
+							<input type="text" class="form-control" id="userAddr2" name="userAddr2" placeholder="상세주소" value="${userinfo.addr2}">
 						</div>
 				</div>
 				
@@ -201,7 +191,7 @@ top:50px;
 						<label for="userZipcd" class="col-sm-2 control-label"> 우편번호</label>
 						
 						<div class="col-sm-10">
-							<input type="text"   class="form-control" id="userZipcd" name="userZipcd" placeholder="우편번호" readonly="readonly">
+							<input type="text" class="form-control" id="userZipcd" name="userZipcd" placeholder="우편번호" readonly="readonly"  value="${userinfo.zipcd}">
 						</div>
 				</div>
 				
@@ -209,7 +199,7 @@ top:50px;
 				<div class="form-group">
 						<label for="userBirth" class="col-sm-2 control-label">생일</label>
 						<div class="col-sm-10">
-							<input type="date" class="form-control" id="userBirth" name="userBirth" placeholder="생일" value="${param.userBirth}">
+							<input type="date" class="form-control" id="userBirth" name="userBirth" placeholder="생일" value="${userinfo.birth}">
 						</div>
 				</div>
 				
@@ -217,13 +207,11 @@ top:50px;
 				
 				
 				
-				<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<button  id="userRegBtn"  type="button" class="btn btn-default pull-right">사용자등록</button>
-						</div>
-				</div>
-				
-				
+										<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button id="userModifyBtn"type="button" class="btn btn-default">사용자 수정</button>
+								</div>
+							</div>
 				
 				</form>
 
