@@ -114,17 +114,18 @@ top:50px;
 			<h2 class="sub-header">사용자 등록</h2>
 			
 				<form id="frm" class="form-horizontal" role="form"
-				action="${pageContext.request.contextPath}/userForm" method="post">
+				action="${pageContext.request.contextPath}/userForm" method="post"
+				enctype="multipart/form-data">
 				
 				
 				
 				
 					
 				<div class="form-group">
-				<label for="userProfileName" class="col-sm-2 control-label">프로필 사진</label>
+				<label for="profile" class="col-sm-2 control-label">프로필 사진</label>
 						
 						<div class="col-sm-10">
-							<input type="file" id="userProfileName" name="userProfileName">
+							<input type="file" id="profile" name="profile">
 						</div>
 				</div>
 				

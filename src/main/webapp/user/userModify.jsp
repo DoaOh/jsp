@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -107,13 +108,14 @@ top:50px;
 			<h2 class="sub-header">사용자 정보 수정</h2>
 			
 				
-			<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath}/userModify" method="post">
+			<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath}/userModify" method="post" enctype="multipart/form-data">
 				<input type="hidden" id="userId" name="userId" value="${userinfo.userId}"/>		
 				<div class="form-group">
-				<label for="userProfileName" class="col-sm-2 control-label">프로필 사진</label>
+				<label for="profile" class="col-sm-2 control-label">프로필 사진</label>
 						
 						<div class="col-sm-10">
-							<input type="file" id="userProfileName" name="userProfileName">
+						
+							<input type="file" id="profile" name="profile">
 						</div>
 				</div>
 				

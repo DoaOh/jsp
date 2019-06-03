@@ -51,18 +51,31 @@ public class profileController extends HttpServlet {
 		//path정보로 file을 읽어온다 
 		ServletOutputStream sos=  response.getOutputStream();
 		
+		String filePath=null;
+		FileInputStream fis = null;
 		
 		
+		//사용자가 업로드한 파일이 존재할경우
+		if(userVo.getPath()!=null){
+			filePath=userVo.getPath();
+		}
 		
-		File file = new File(userVo.getPath());
-		FileInputStream fis = new FileInputStream(file);
+		//사용자가 업로드한 파일이 존재하지 않을경우
+		else{
+			filePath= getServletContext().getRealPath("/image/no_image.gif");
+			
+		
+		File file = new File(filePath);
+		fis = new FileInputStream(file);
 		byte[] buffer = new byte[512];
 		
 		
 		while( fis.read(buffer ,0 ,512) !=-1){
 			sos.write(buffer);
 		}
-		 
+		
+		}
+		
 		fis.close();
 		sos.close();
 		

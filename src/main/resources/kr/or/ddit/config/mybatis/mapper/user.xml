@@ -47,12 +47,12 @@ select * from users where userid = #{userId}
 
 	 <insert id="insertUser" parameterType="UserVo" >
 	 	insert into users
-		VALUES (#{userId}, #{name}, #{alias}, #{pass}, #{addr1}, #{addr2},#{zipcd},#{birth},'','' )
+		VALUES (#{userId}, #{name}, #{alias}, #{pass}, #{addr1}, #{addr2},#{zipcd},#{birth},#{path},#{filename})
 	 </insert>
 
 
 <update id="updateUser" parameterType="UserVo">
-update users set name = #{name}, alias = #{alias}, pass = #{pass}, addr1 = #{addr1}, addr2 = #{addr2}, zipcd = #{zipcd} where userid = #{userId}
+update users set name = #{name}, alias = #{alias}, pass = #{pass}, addr1 = #{addr1}, addr2 = #{addr2}, zipcd = #{zipcd},path=#{path}, filename=#{filename} where userid = #{userId}
 </update>
 
 

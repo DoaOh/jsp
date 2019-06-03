@@ -98,7 +98,7 @@ public class UserVo {
 	}
 
 	public UserVo(String name, String userId, String alias, String pass,String addr1,
-			String addr2, String zipcd, Date birth) {
+			String addr2, String zipcd, Date birth,String path,String filename) {
 		super();
 		this.name = name;
 		this.userId = userId;
@@ -108,6 +108,8 @@ public class UserVo {
 		this.addr2 = addr2;
 		this.zipcd = zipcd;
 		this.birth = birth;
+		this.path = path;
+		this.filename = filename;
 		
 	}
 	

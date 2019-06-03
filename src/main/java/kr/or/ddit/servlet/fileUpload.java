@@ -33,83 +33,63 @@ public class fileUpload extends HttpServlet {
   
 	
 	//파일업로드는 post방식만 가능하다
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//userId  profile 파라미터를 확인
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		// userId, profile 파라미터를 확인
 		String userId = request.getParameter("userId");
 		String profile = request.getParameter("profile");
-		
-	
-	
-		logger.debug("userId{}  ",userId);
-		logger.debug("profile{}  ",profile);
-		
-		
-		Part part = request.getPart("profile");
-		logger.debug("part.getSize {} " ,part.getSize());
-		
-		
-		//파일이 존재할때만 파일을 정해진 위치에 기록한다
-		
-		if(part.getSize()>0){
+		logger.debug("userId : {}", userId);
+		logger.debug("profile : {}", profile);
 
-			/*	part.getName()
-				part.getContentType()*/
-			
-			logger.debug("getName  {}  ",	part.getName());
-			logger.debug("getContentType  {}  ",	part.getContentType());
-		
-			
-		/*	Collection<String> headerNames = part.getHeaderNames();
-			for(String header : headerNames){
-				logger.debug("{}: {} ", header, part.getHeaders(header));
-			}*/
-			
-			String contentDisposition= part.getHeader("content-disposition");
+		Part part = request.getPart("profile"); // input type의 name 속성을 적어준다.
+		logger.debug("part.getSize() : {}", part.getSize());
+
+		// 파일이 존재할 때만 파일을 정해진 위치에 기록한다.
+		if (part.getSize() > 0) {
+
+			logger.debug("part.getContentType() : {}", part.getContentType());
+			logger.debug("part.getName() : {}", part.getName());
+			String contentDisposition = part.getHeader("content-disposition");
 			String fileName = PartUtil.getFileName(contentDisposition);
 			String ext = PartUtil.getExt(fileName);
-			 ext = ext.equals("")? "":"."+ext;
+			ext = ext.equals("") ? "" : "." + ext;
+
+			// 년도에 해당하는 폴더가 있는지, 년도안에 월에 해당하는 폴더가 있는지
+			Date dt = new Date();
+			SimpleDateFormat yyyyMMSdf = new SimpleDateFormat("yyyyMM");
 			
-			 
-			 //년도에 해당하는 폴더가 있는지 년도안에 월에해당하는 폴더가 있는지
-			 
-			 Date dt= new Date(); 
-			 SimpleDateFormat yyyymmsdf = new SimpleDateFormat("yyyy");
-			
-			 String yyyyMM = yyyymmsdf.format(dt);
-			
-			 String yyyy = yyyyMM.substring(0,4);
+			String yyyyMM = yyyyMMSdf.format(dt);
+//			SimpleDateFormat mmSdf = new SimpleDateFormat("MM");
+//			String yyyy = yyyySdf.format(dt);
+//			String mm = mmSdf.format(dt);
+			String yyyy = yyyyMM.substring(0,4);
 			String mm = yyyyMM.substring(4,6);
-				
-			 
-			 File yyyyFolder = new File("d:\\upload\\2019");
-			 if(!yyyyFolder.exists()){
-				 
-				 yyyyFolder.mkdir();
-			 }
-			 
-			 File mmFolder = new  File("d:\\upload\\2019||06");
-			 if(!mmFolder.exists()){
-				 
-				 mmFolder.mkdir();
-				 
-			 }
-			 
 			
-			 String uploadPath= "d:\\upload\\"+yyyy+"\\"+mm;
-			 File uploadFolder = new File(uploadPath);
-			 if(uploadFolder.exists()){
-				 
-				 
-				 //파일디스크에 쓰기
-				 part.write(uploadPath+"\\"+UUID.randomUUID().toString()+ext);
-				 part.delete();
-				 
-			 }
-			
+
+			File yyyyFolder = new File("d:\\upload\\" + yyyy);
+
+			// 신슈년도로 넘어갔을 때 해당 년도의 폴더를 생성한다.
+			if (!yyyyFolder.exists()) {
+				yyyyFolder.mkdir();
+			}
+			// 월에 해당하는 폴더가 있는지
+			File mmFolder = new File("d:\\upload\\" + mm);
+			if (!mmFolder.exists()) {
+				mmFolder.mkdir();
+			}
+
+			String uploadPath = "d:\\upload\\" + yyyy + File.separator + mm;
+			File uploadFolder = new File(uploadPath);
+			if (uploadFolder.exists()) {
+
+				// 파일 디스크에 쓰기
+				part.write(uploadPath + File.separator + UUID.randomUUID().toString() + ext);
+				part.delete();
+			}
+
 		}
-		
-		
+
 	}
 
 }
