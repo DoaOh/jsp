@@ -52,7 +52,7 @@ select * from users where userid = #{userId}
 
 
 <update id="updateUser" parameterType="UserVo">
-update users set alias = #{alias}, pass = #{pass}, addr1 = #{addr1}, addr2 = #{addr2}, zipcd = #{zipcd} where userid = #{userId}
+update users set name = #{name}, alias = #{alias}, pass = #{pass}, addr1 = #{addr1}, addr2 = #{addr2}, zipcd = #{zipcd} where userid = #{userId}
 </update>
 
 

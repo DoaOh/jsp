@@ -18,10 +18,10 @@ public class UserVo {
     private String path;
     private String filename;
 	
+  
     
-    
-    public String getbirth() {
-    	SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd");
+    public String getbirthstr() {
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     	if(birth==null){
     		return"";
     		

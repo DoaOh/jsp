@@ -81,7 +81,7 @@ public class userModifyController extends HttpServlet {
 		logger.debug("aa{}", pass);
 		logger.debug("aa{}", birth);
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		UserVo userVo = null;
 		

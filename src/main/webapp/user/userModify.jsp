@@ -199,7 +199,7 @@ top:50px;
 				<div class="form-group">
 						<label for="userBirth" class="col-sm-2 control-label">생일</label>
 						<div class="col-sm-10">
-							<input type="date" class="form-control" id="userBirth" name="userBirth" placeholder="생일" value="${userinfo.birth}">
+							<input type="date" class="form-control" id="userBirth" name="userBirth" placeholder="생일" value="${userinfo.birthstr}">
 						</div>
 				</div>
 				
