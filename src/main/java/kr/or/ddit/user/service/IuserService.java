@@ -26,10 +26,18 @@ public interface IuserService {
 	Map<String, Object> userPagingList(PageVo pageVo);
 	
 	int insertUser(UserVo userVo);
-	 
 	
 	int deleteUser(String userId);
 
-int updateUser(UserVo userVo);
+	int updateUser(UserVo userVo);
+	
+	/**
+	 * Method : encryptPassAlluser
+	 * 작성자 : PC02
+	 * 변경이력 :
+	 * @return
+	 * Method 설명 : 사용자 비밀번호 일괄 암호화 
+	 */
+	int encryptPassAllUser();
 	
 }

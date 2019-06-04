@@ -104,5 +104,41 @@ public class UserDao implements IuserDao {
 		sqlSession.close();
 		return updateCnt;
 	}
+
+	
+	
+	
+	
+	/**
+	 * Method : userListForPassEncrypt
+	 * 작성자 : PC02
+	 * 변경이력 :
+	 * @param sqlSession
+	 * @return
+	 * Method 설명 : 비밀번호 암호화 적용대상 사용자 전체 조회 
+	 */
+	@Override
+	public List<UserVo> userListForPassEncrypt(SqlSession sqlSession) {
+		// TODO Auto-generated method stub
+		return  sqlSession.selectList("user.userListForPassEncrypt");
+	}
+
+	
+	
+	
+	/**
+	 * Method : userListForPassEncrypt
+	 * 작성자 : PC02
+	 * 변경이력 :
+	 * @param sqlSession
+	 * @return suserVo
+	 * Method 설명 :  서용자비밀번호 암호화 적용
+	 */
+
+	
+	@Override
+	public int updateUserEncryptPass(SqlSession sqlSession, UserVo userVo) {
+		return  sqlSession.update("user.updateUserEncryptPass",userVo);
+	}
 	
 }

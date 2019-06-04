@@ -58,9 +58,6 @@ public class LprodPagingListController extends HttpServlet {
 		String pagee =request.getParameter("page");
 		String pageSizee =request.getParameter("pageSize");
 		
-		 logger.debug("pagee{}",pagee);
-		 logger.debug("pageSizee{}",pageSizee);
-		
 		 
 	     /* if (pagee==""||pageSizee==""){
 	    	  pagee = "1"; 

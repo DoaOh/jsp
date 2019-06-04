@@ -68,16 +68,6 @@ delete from users
 
 
 
-
-
-
-
-
-
-
-
-
-
 	<select id="lprodList" resultType="lprodVo">
 
 
@@ -110,6 +100,24 @@ delete from users
 	<select id="lprodCnt" resultType="int">
 	 select count(*) from lprod
 	</select>
+	
+	
+	
+	<select id="userListForPassEncrypt" resultType="userVo">
+	
+	select * from users
+    where userid  not in( 'brown','red','pink') 
+	
+	</select>
+
+
+
+
+	<update id = "updateUserEncryptPass" parameterType="UserVo">
+	
+	update users set pass= #{pass} where userid = #{userId}
+	
+	</update>
 
 
 

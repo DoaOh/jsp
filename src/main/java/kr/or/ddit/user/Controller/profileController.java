@@ -39,6 +39,8 @@ public class profileController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+	
+		
 		//사용자 아이디를 파라미터로 부터 확인 
 		String userId = request.getParameter("userId");
 		
@@ -59,7 +61,7 @@ public class profileController extends HttpServlet {
 		}
 		
 		//사용자가 업로드한 파일이 존재하지 않을경우
-		else{
+		else
 			filePath= getServletContext().getRealPath("/image/no_image.gif");
 			
 		
@@ -72,15 +74,11 @@ public class profileController extends HttpServlet {
 			sos.write(buffer);
 		}
 		
-		}
+		
 		
 		fis.close();
 		sos.close();
 		
-		
-		//PATH 정보로  file을 읽어 들여서 
-		//response 객체에 스트림으로 써준다 
-		//request.getRequestDispatcher("/user/user.jsp").forward(request, response);
 		
 		
 	}
