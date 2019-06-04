@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.IuserService;
 import kr.or.ddit.user.service.UserService;
@@ -101,15 +102,16 @@ public class LoginController extends HttpServlet {
 		
 		
 		logger.debug("rememberme : {}",request.getParameter("rememberme"));
-		
-		
-		
-		
 		logger.debug("parameter userId :()", request.getParameter("userId"));
 		logger.debug("parameter password :()", request.getParameter("password"));
 
+		
+		
+		
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
+		String encryptpass= KISA_SHA256.encrypt(password);
+		
 		
 		
 		request.setAttribute("userList", userService.userList());
@@ -123,7 +125,7 @@ public class LoginController extends HttpServlet {
 		
 
 		// 일치
-		if (userIddb !=null && userId.equals(a) && password.equals(b)) {
+		if (userIddb !=null && userId.equals(a) && encryptpass.equals(b)) {
 			
 			
 			

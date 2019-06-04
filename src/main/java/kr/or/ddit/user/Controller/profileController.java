@@ -20,9 +20,7 @@ import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.IuserService;
 import kr.or.ddit.user.service.UserService;
 
-/**
- * Servlet implementation class profileController
- */
+
 @WebServlet("/profile")
 public class profileController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
