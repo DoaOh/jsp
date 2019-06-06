@@ -8,8 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import kr.or.ddit.user.model.JSPBoardVo;
 import kr.or.ddit.user.model.JSPPostVo;
+import kr.or.ddit.user.service.BoardService;
+import kr.or.ddit.user.service.IBoardService;
 import kr.or.ddit.user.service.IPostService;
 import kr.or.ddit.user.service.PostService;
 
@@ -23,32 +27,26 @@ public class boardModifyController extends HttpServlet {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(boardModifyController.class);
-
-	private IPostService postService;
-	
+	private IBoardService boardService;
 
 	@Override
 	public void init() throws ServletException {
-		postService= new PostService();
+		boardService=new BoardService();
 	}
 
 
 	protected void doGet(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
 		
-		logger.debug( " doget"  );
-	
-		 String postid = request.getParameter("postId");
+		 String boardid = request.getParameter("boardid");
 		 
-		 logger.debug("modify postid {}",postid);
+		 logger.debug("modify boardid {}",boardid);
 
-		 JSPPostVo postVo = postService.getPost(postid);
+		 JSPBoardVo JSPBoardVo = boardService.getBoard(boardid);
 
-		 request.setAttribute("post",postVo );
-
-		
-
-		request.getRequestDispatcher("/user/boardModify.jsp").forward(request,
+		 request.setAttribute("BOARD",JSPBoardVo);
+	
+		request.getRequestDispatcher("/user/BoardModify.jsp").forward(request,
 				response);
 
 	}
@@ -60,23 +58,20 @@ public class boardModifyController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 
 		
-		String posttitle= request.getParameter("posttitle");
-		String postcontent= request.getParameter("postcontent");
-		String boardid= request.getParameter("boardid");
-		String postid = request.getParameter("postId");
-		String postid2 = "80001";
-		String userid= request.getParameter("userid");
+		HttpSession session =request.getSession();
+		String userid=(String) request.getSession().getAttribute("USERID");
+		logger.debug(userid);
 		
-		logger.debug("modify postid {}",postid);
-		logger.debug("posttitle {} ",posttitle);
-		logger.debug("postcontent {} ",postcontent);
-		logger.debug("boardid {} ",boardid);
-		logger.debug("userid {} ",userid);
+		String boardname= request.getParameter("boardname");
+		String boarduse_yn = request.getParameter("boarduse_yn");
+		String boardid = "";
+		logger.debug("boardname {} ",boardname);
+		logger.debug("boarduse_yn {} ",boarduse_yn);
 		
-		JSPPostVo JSPPostVo=null;
-		JSPPostVo = new JSPPostVo(postid, userid, posttitle, postcontent, postid2,  boardid);
+		JSPBoardVo JSPBoardVo=null;
+		JSPBoardVo = new JSPBoardVo(boardid, boardname,boarduse_yn, userid);
 		
-			int updateCnt = postService.updatePost(JSPPostVo);
+			int updateCnt = boardService.updateBoard(JSPBoardVo);
 			
 			logger.debug("updateCnt{}",updateCnt);
 

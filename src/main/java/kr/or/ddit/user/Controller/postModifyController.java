@@ -23,7 +23,6 @@ public class postModifyController extends HttpServlet {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(postModifyController.class);
-
 	private IPostService postService;
 	
 

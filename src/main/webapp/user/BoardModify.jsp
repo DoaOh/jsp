@@ -25,7 +25,7 @@
 
 $(document).ready(function(){
 	
-        	$("#userModifyBtn").on("click",function(){
+        	$("#boardModifyBtn").on("click",function(){
         		
         		$("#frm").submit();
         	});
@@ -52,13 +52,12 @@ $(document).ready(function(){
 			
 			
 					
-			<h2 class="sub-header">게시판 정보 수정</h2>  
+			<h2 class="sub-header">게시판 수정</h2>
 			
 				
-			<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath}/postModify" method="post" enctype="multipart/form-data">
-			<input type="hidden" id="postId" name="postId" value="${post.postid}"/>		
-				<input type="hidden" id="boardid" name="boardid" value="${post.boardid}"/>		
-				<input type="hidden" id="useid" name="userid" value="${USER_INFO.userId}"/>		
+			<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath}/boardModify" method="post" enctype="multipart/form-data">
+			
+				<input type="hidden" id="boardid" name="boardid" value="${board.boardid}"/>		
 				
 			
 			
@@ -66,22 +65,19 @@ $(document).ready(function(){
 				
 				<div class="form-group">
 				
-						<label for="userNm" class="col-sm-2 control-label"> 게시글제목</label>
+						<label for="userNm" class="col-sm-2 control-label"> 게시판제목</label>
 						
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="posttitle" name="posttitle" placeholder="제목"  value="${post.posttitle}">
+							<input type="text" class="form-control" id="boardid" name="boardid" placeholder="제목"  value="${board.boardid}">
 						</div>
 				</div>
 				
 				
 				<div class="form-group">
 				
-						<label for="userAlias" class="col-sm-2 control-label">내용</label>
+						<label for="userAlias" class="col-sm-2 control-label">사용여부</label>
 						
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="postcontent" name="postcontent" placeholder="내용" value="${post.postcontent}">
-								
-									<select  name="selsect" id="selsect" >
+							<select  name="selsect" id="selsect" >
 									
 									<option value="11"> 		<c:choose>
 									<c:when test="${board.boarduse_yn==0}">
@@ -114,7 +110,7 @@ $(document).ready(function(){
 				
 										<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
-									<button id="userModifyBtn"type="button" class="btn btn-default">게시글수정</button>
+									<button id="boardModifyBtn"type="button" class="btn btn-default">게시글수정완료</button>
 								</div>
 							</div>
 				

@@ -27,7 +27,8 @@ cursor:pointer;
 $(document).ready(function(){
 	
 	//사용자 테그 이벤트 등록
-	$("#id").on("click",function(){
+	$("#boardGOGO").on("click",function(){
+		
 		 var boardid = $(this).find(".boardid").text();
 		 $("#boardid").val(boardid);
 		 $("#frm").submit();
@@ -85,20 +86,21 @@ $(document).ready(function(){
 								
 							
 								<c:forEach items="${boardAllList}" var="board" >
-							<tr  data-userid="${board.boardid}">
+							<tr data-userid="${board.boardid}">
 							<td class="boardid">${board.boardid}</td>
 									<td>${board.boardname}</td>
 									<td><c:choose>
 									<c:when test="${board.boarduse_yn==0}">
 										<span>사용중</span>
 									</c:when>
+									
 									<c:otherwise>
 									<span>사용안함</span>
 									</c:otherwise>
 								</c:choose>
 									</td>
 						
-								<td><a id="boardTr" href="" class="btn btn-default pull-right">수정</a></td>
+								<td><a id="boardGOGO" href="${pageContext.request.contextPath}/boardModify" class="btn btn-default pull-right">수정</a></td>
 								</tr>
 								
 								</c:forEach>
