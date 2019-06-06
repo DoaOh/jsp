@@ -7,8 +7,11 @@
 	<typeAliases>
 		<typeAlias alias="userVo" type="kr.or.ddit.user.model.UserVo" />
 		<typeAlias alias="lprodVo" type="kr.or.ddit.user.model.LprodVo" />
-		
 		<typeAlias alias="PageVo" type="kr.or.ddit.paging.model.PageVo" />
+		<typeAlias alias="BPageVo" type="kr.or.ddit.paging.model.BPageVo" />
+		<typeAlias alias="JSPBoardVo" type="kr.or.ddit.user.model.JSPBoardVo" />
+		<typeAlias alias="JSPPostVo" type="kr.or.ddit.user.model.JSPPostVo" />
+		
 	</typeAliases>
 
 	<environments default="development">

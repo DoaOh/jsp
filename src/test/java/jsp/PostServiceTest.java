@@ -24,10 +24,10 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class UserServiceTest {
+public class PostServiceTest {
 	
 	private static final Logger logger = LoggerFactory
-			.getLogger(UserServiceTest.class);
+			.getLogger(PostServiceTest.class);
 	
 	
 

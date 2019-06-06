@@ -2,24 +2,39 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="user">
 
 	<select id="userList" resultType="UserVo">
-	select * from users order by userid
+		select * from users order by userid
 	</select>
 
 
 
 	<select id="userInfo" parameterType="String" resultType="UserVo">
-
-select * from users where userid = #{userId}
-
-
+		select * from users where userid = #{userId}
 	</select>
 
 
-	<!-- pageVo int page int pageSize -->
-	<select id="userPagingList" parameterType="pageVo" resultType="UserVo">
+	<select id="postInfo" parameterType="String" resultType="JSPPostVo">
+		select * from jsppost where postid = #{postId}
+	</select>
+
+
+
+
+	<select id="boardPostList" resultType="JSPPostVo" parameterType="String" >
+		select * from jsppost where boardid = #{boardid}
+	</select>
+	
+	
+	<select id="postList" resultType="JSPPostVo">
+		select * from jsppost
+	</select>
+	
+
+
+	<select id="boardPostPagingList" parameterType="BPageVo" resultType="JSPPostVo">
 <![CDATA[
 
 		select *
@@ -27,58 +42,19 @@ select * from users where userid = #{userId}
 		(select a.*, rownum rn
 		from
 		(select a.*
-		from users a
+		from jsppost a where boardid = #{boardid} 
 		order by
-		 userid) a)
+		postid ) a)
 		where 	rn >= (#{page}-1)*#{pageSize}+1 and rn<= #{page}*#{pageSize}
 	
 ]]>
-
-	</select>
-	
-	<!-- 사용자 전체 수 조회  -->
-
-	<select id="usersCnt" resultType="int">
-	 select count(*) from users
 	</select>
 
 
 
 
-	 <insert id="insertUser" parameterType="UserVo" >
-	 	insert into users
-		VALUES (#{userId}, #{name}, #{alias}, #{pass}, #{addr1}, #{addr2},#{zipcd},#{birth},#{path},#{filename})
-	 </insert>
 
-
-<update id="updateUser" parameterType="UserVo">
-update users set name = #{name}, alias = #{alias}, pass = #{pass}, addr1 = #{addr1}, addr2 = #{addr2}, zipcd = #{zipcd},path=#{path}, filename=#{filename} where userid = #{userId}
-</update>
-
-
-
-
-
-<delete id="deleteUser"  parameterType="String">
-
-delete from users
- where userid = #{userId}
- 
-</delete>
-
-
-
-	<select id="lprodList" resultType="lprodVo">
-
-
-		select * from lprod 
-	</select>
-
-
-
-
-	<!-- pageVo int page int pageSize -->
-	<select id="lprodPagingList" parameterType="pageVo" resultType="lprodVo">
+	<select id="postPagingList" parameterType="pageVo" resultType="JSPPostVo">
 <![CDATA[
 
 		select *
@@ -86,38 +62,73 @@ delete from users
 		(select a.*, rownum rn
 		from
 		(select a.*
-		from lprod a
+		from jsppost a
 		order by
-		 lprod_id) a)
+		 postid ) a)
 		where 	rn >= (#{page}-1)*#{pageSize}+1 and rn<= #{page}*#{pageSize}
 	
 ]]>
-
-	</select>
-	
-	<!-- 사용자 전체 수 조회  -->
-
-	<select id="lprodCnt" resultType="int">
-	 select count(*) from lprod
-	</select>
-	
-	
-	
-	<select id="userListForPassEncrypt" resultType="userVo">
-	
-	select * from users
-    where userid  not in( 'brown','red','pink') 
-	
 	</select>
 
 
+	<select id="postCnt" resultType="int">
+		select count(*) from jsppost
+	</select>
+
+	<insert id="insertPost" parameterType="JSPPostVo">
+		insert into jsppost
+		VALUES (JSPPOSTID_SEQ.NEXTVAL,#{userid}, #{posttitle}, #{postcontent}, sysdate,#{postid2},#{boardid})
+	</insert>
 
 
-	<update id = "updateUserEncryptPass" parameterType="UserVo">
-	
-	update users set pass= #{pass} where userid = #{userId}
-	
+	<update id="updatePost" parameterType="JSPPostVo">
+		update jsppost set posttitle = #{posttitle}, postcontent = #{postcontent}, boardid=#{boardid}
+		where postid = #{postid}
 	</update>
+
+
+
+	<delete id="deletePost" parameterType="String">
+		delete from jsppost
+		where postid = #{postid}
+	</delete>
+
+
+	<select id="boardInfo" parameterType="String" resultType="JSPBoardVo">
+		select * from jspboard where boardid = #{boardid}
+	</select>
+
+
+	<select id="boardList" resultType="JSPBoardVo">
+		select * from jspboard where boarduse_yn=0
+	</select>
+	
+	<select id="boardALLList" resultType="JSPBoardVo">
+		select * from jspboard 
+	</select>
+	
+		<select id="boardCnt" resultType="int">
+		select count(*) from jspboard
+	</select>
+
+	<insert id="insertBoard" parameterType="JSPBoardVo">
+		insert into jspboard
+		VALUES (JSPBOARDID_SEQ.NEXTVAL,#{boardname},0,#{userid},sysdate)
+	</insert>
+	
+
+	<update id="updateBoard" parameterType="JSPBoardVo">
+		update jspboard set boardname = #{boardname}
+		where boardid = #{boardid}
+	</update>
+
+	
+	<update id="deleteBoard" parameterType="JSPBoardVo">
+		update jspboard set boarduse_yn = 1
+		where boardid = #{boardid}
+	</update>
+
+
 
 
 

@@ -1,17 +1,17 @@
 package kr.or.ddit.paging.model;
 
-public class PageVo {
+public class BPageVo {
 	
 	
-	public PageVo(int page, int pageSize) {
+	public BPageVo(int page, int pageSize,String boardid) {
 		super();
 		this.page = page;
 		this.pageSize = pageSize;
-	
+		this.boardid = boardid;
 	}
 
 
-	public PageVo() {
+	public BPageVo() {
 	
 	}
 	
@@ -30,6 +30,14 @@ public class PageVo {
 	
 	private int page;  //페이지 번호 
 	private int pageSize;  //페이지당 건수
-	
-	
+	private String boardid;  //페이지당 건수
+	public String getBoardid() {
+		return boardid;
+	}
+
+
+	public void setBoardid(String boardid) {
+		this.boardid = boardid;
+	}
+
 }

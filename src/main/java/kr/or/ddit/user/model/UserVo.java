@@ -3,10 +3,8 @@ package kr.or.ddit.user.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 public class UserVo {
-	
-	
+
 	private String name; 
 	private String userId;
 	private String alias; 
@@ -17,18 +15,16 @@ public class UserVo {
     private Date birth;
     private String path;
     private String filename;
-	
-  
-    
+
     public String getbirthstr() {
+    	
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     	if(birth==null){
-    		return"";
-    		
+    		return"";	
     	}
-    	
 		return sdf.format(birth);
 	}
+    
     
     public String getAddr1() {
 		return addr1;
@@ -94,7 +90,6 @@ public class UserVo {
 
 	public UserVo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public UserVo(String name, String userId, String alias, String pass,String addr1,
