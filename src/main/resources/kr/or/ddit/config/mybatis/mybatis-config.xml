@@ -11,6 +11,7 @@
 		<typeAlias alias="BPageVo" type="kr.or.ddit.paging.model.BPageVo" />
 		<typeAlias alias="JSPBoardVo" type="kr.or.ddit.user.model.JSPBoardVo" />
 		<typeAlias alias="JSPPostVo" type="kr.or.ddit.user.model.JSPPostVo" />
+		<typeAlias alias="JSPReplyVo" type="kr.or.ddit.user.model.JSPReplyVo" />
 		
 	</typeAliases>
 

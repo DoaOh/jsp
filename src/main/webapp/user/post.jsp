@@ -19,18 +19,11 @@
 <%@include file="/common/basiclib.jsp"%>
 
 <script>
-$(document).ready(function(){
-	
-	$("#modify").on("click",function(){
-		
-		$("#frm").submit();
-		
+	$(document).ready(function() {
+		$("#modify").on("click", function() {
+			$("#frm").submit();
+		})
 	})
-	
-	
-})
-
-
 </script>
 
 </head>
@@ -39,77 +32,105 @@ $(document).ready(function(){
 	<!--header-->
 	<%@include file="/common/header.jsp"%>
 
-
 	<div class="container-fluid">
 		<div class="row">
-		<!--left-->
-		<%@include file="/common/left.jsp"%>
-
-		
+			<!--left-->
+			<%@include file="/common/left.jsp"%>
 
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<div class="row">
-			<div class="col-sm-8 blog-main">
-			
-			
-			
-					
-			<h2 class="sub-header">포스트보기</h2>
-			
-				
-	  <form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath}/postModify" method="get">
-	     <input type="hidden" id="postId" name="postId" value="${post.postid}"/>
-				
-				
-				
-				
-					<div class="form-group">
-						<label for="userNm" class="col-sm-2 control-label">제목</label>
-						<div class="col-sm-10">
-							<label class="control-label">${post.posttitle}</label>
-						</div>
-					</div>
-				
-				
-					<div class="form-group">
-						<label for="userNm" class="col-sm-2 control-label">내용</label>
-						<div class="col-sm-10">
-							<label  class="control-label">${post.postcontent}</label>
-						</div>
-					</div>
+				<div class="row">
+					<div class="col-sm-8 blog-main">
 
 
-					<div class="form-group">
-						<label for="userNm" class="col-sm-2 control-label">작성일</label>
-						<div class="col-sm-10">
-							<label class="control-label">${post.postred_dtstr}</label>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="userNm" class="col-sm-2 control-label">작성자</label>
-						<div class="col-sm-10">
-							<label class="control-label">${post.userid}</label>
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<label for="userNm" class="col-sm-2 control-label">게시판코드</label>
-						<div class="col-sm-10">
-							<label class="control-label">${post.boardid}</label>
-						</div>
-					</div>
-					
-			
-	
-			
-					        <div class="form-group">
-								<div class="col-sm-offset-2 col-sm-10">
-									<button type="submit" class="btn btn-default">포스트 수정</button>
+
+
+						<h2 class="sub-header">포스트보기</h2>
+
+
+						<form id="frm" class="form-horizontal" role="form"
+							action="${pageContext.request.contextPath}/postModify"
+							method="get">
+							<input type="hidden" id="postId" name="postId"
+								value="${post.postid}" />
+
+							<div class="form-group">
+								<label for="userNm" class="col-sm-2 control-label">제목</label>
+								<div class="col-sm-10">
+									<label class="control-label">${post.posttitle}</label>
 								</div>
 							</div>
 
+							<div class="form-group">
+								<label for="userNm" class="col-sm-2 control-label">내용</label>
+								<div class="col-sm-10">
+									<label class="control-label">${post.postcontent}</label>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="userNm" class="col-sm-2 control-label">작성일</label>
+								<div class="col-sm-10">
+									<label class="control-label">${post.postred_dtstr}</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="userNm" class="col-sm-2 control-label">작성자</label>
+								<div class="col-sm-10">
+									<label class="control-label">${post.userid}</label>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="userNm" class="col-sm-2 control-label">게시판코드</label>
+								<div class="col-sm-10">
+									<label class="control-label">${post.boardid}</label>
+								</div>
+							</div>
+
+						
+						<div class="form-group">
+							<div class="col-sm-12">
+							<button type="submit" class="btn btn-default pull-right">포스트 수정</button>
+							&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;
+							<a id="deleteGOGO" href="${pageContext.request.contextPath}/postDelete?postid=${post.postid}" class="btn btn-default pull-right">포스트 삭제</a>
+							&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;
+							<a id="commentGOGO" href="${pageContext.request.contextPath}/postComment?postid=${post.postid}&boardid=${post.boardid}" class="btn btn-default pull-right">답글달기</a>
+							</div>
+						</div>
 					
-				</form>
+						</form>
+						
+
+
+
+					  <!-- 댓글을 작성해 봅시당 -->
+						<form>
+						
+						<div class="table-responsive">
+							<table class="table table-striped">
+								<tr>
+									
+									<th>댓글</th>
+									<th>글쓴이</th>
+									<th>작성일</th>
+								</tr>
+
+
+								<c:forEach items="${reply}" var="reply">
+
+									<tr class="replyTr" data-userid="${reply.reply}">
+										<td>${reply.reply}</td>
+										<td>${reply.userid}</td>
+										<td>${reply.replyred_dtstr}</td>
+									</tr>
+
+								</c:forEach>
+							</table>
+
+						</div>
+						
+						</form>
+
 
 
 

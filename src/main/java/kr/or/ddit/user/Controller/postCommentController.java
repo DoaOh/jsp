@@ -28,14 +28,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-@WebServlet("/postForm")
+@WebServlet("/postComment")
 @MultipartConfig(maxFileSize=1024*1024*3, maxRequestSize=1024*1024*15)
-public class postFormController extends HttpServlet {
+public class postCommentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	
 	private static final Logger logger = LoggerFactory
-			.getLogger(postFormController.class);
+			.getLogger(postCommentController.class);
    
 	private IPostService postService;
 	
@@ -50,14 +50,17 @@ public class postFormController extends HttpServlet {
 	}
 
 	
-	//사용자 등록 화면 요청 처리 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-	
+		String boardid =request.getParameter("boardid");
+		String postid =request.getParameter("postid");
+		logger.debug("boardid {} ",boardid);
+		logger.debug("postid2 {} ",postid);
 		
-		
-	//사용자 등록 화면으로 이동 
-	request.getRequestDispatcher("/user/postForm.jsp").forward(request, response);
+		JSPPostVo postVo = postService.getPost(postid);
+	    request.setAttribute("post",postVo );
+
+	request.getRequestDispatcher("/user/postCommentForm.jsp").forward(request, response);
 
 	}
 
@@ -75,21 +78,22 @@ public class postFormController extends HttpServlet {
 	String boardid= request.getParameter("boardid");
 	String postid2 =request.getParameter("postid");
 	String postid = "";
+	
 
 
-	logger.debug("userid {} ",session);
-	logger.debug("posttitle {} ",posttitle);
-	logger.debug("postcontent {} ",postcontent);
-	logger.debug("boardid {} ",boardid);
+	logger.debug("userid코멘틐꺼 {} ",session);
+	logger.debug("posttitle코멘틐꺼 {} ",posttitle);
+	logger.debug("postcontent코멘틐꺼 {} ",postcontent);
+	logger.debug("boardid 코멘틐꺼{} ",boardid);
+	logger.debug("postid2 코멘틐꺼 {} ",postid2);
 	
 	
 	
 	 JSPPostVo JSPPostVo=null;
-
 	JSPPostVo = new JSPPostVo(postid, userid,  posttitle, postcontent, postid2,  boardid);
 	
 	
-	// 게시판이 존재  --> 정상입력가능
+	
 		if(boardid != null){
 			
 			
@@ -97,7 +101,7 @@ public class postFormController extends HttpServlet {
 
 			// 정상등록
 			if(insertCnt == 1){
-				response.sendRedirect(request.getContextPath()+"/postServlet");
+				response.sendRedirect(request.getContextPath()+"/content?boardid="+boardid);
 			}
 		}
 		// 게시판이 없다면 

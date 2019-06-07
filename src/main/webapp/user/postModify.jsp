@@ -55,7 +55,7 @@ $(document).ready(function(){
 			<h2 class="sub-header">게시판 정보 수정</h2>  
 			
 				
-			<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath}/postModify" method="post" enctype="multipart/form-data">
+			<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath}/postModify" method="post">
 			<input type="hidden" id="postId" name="postId" value="${post.postid}"/>		
 				<input type="hidden" id="boardid" name="boardid" value="${post.boardid}"/>		
 				<input type="hidden" id="useid" name="userid" value="${USER_INFO.userId}"/>		

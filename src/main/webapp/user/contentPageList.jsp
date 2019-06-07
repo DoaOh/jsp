@@ -93,11 +93,47 @@ $(document).ready(function(){
 
 									<tr class="postTr" data-userid="${post.postid}">
 										<td class="postId">${post.postid}</td>
-										<td>${post.posttitle}</td>
+										<td>
+										
+										
+										
+										<%-- ${post.posttitle} --%>
+										
+										
+										
+	                                <c:choose>
+									<c:when test="${post.postid2!=null}">
+										&nbsp;&nbsp;&nbsp;&nbsp;+ ${post.posttitle}
+									</c:when>
+									<c:otherwise>
+										${post.posttitle}
+									</c:otherwise>
+								</c:choose>
+										
+										</td>
 										<td>${post.postcontent}</td>
 										<td>${post.userid}</td>
 										<td>${post.postred_dtstr}</td>
 									</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 								</c:forEach>
 							</table>

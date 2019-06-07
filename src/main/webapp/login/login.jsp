@@ -45,11 +45,11 @@
         
         <label for="userId" class="sr-only">userId</label>
         <input type="text" id="userId" class="form-control" name="userId" 
-        placeholder="userId"  required  >
+        placeholder="userId"  value="dkskqk00" required >
         
         <label for="password" class="sr-only">Password</label>
         <input type="password" id="password" name="password"class="form-control"
-         placeholder="Password" required >
+         placeholder="Password" value="dkskqk00" required >
         <button id="signinBtn"class="btn btn-lg btn-primary btn-block" type="button">Sign in</button>
       </form>
 

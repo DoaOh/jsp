@@ -31,8 +31,8 @@ Map<String, Object> boardPostPagingList(BPageVo BpageVo);
 public JSPPostVo getPost(String postId);
 
 int insertPost(JSPPostVo jSPPostVo);	
-
-int deletePost(String postId);
+/*
+int deletePost(String postId);*/
 
 int updatePost(JSPPostVo jSPPostVo);
 

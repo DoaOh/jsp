@@ -16,6 +16,7 @@ import kr.or.ddit.user.model.JSPBoardVo;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.BoardService;
 import kr.or.ddit.user.service.IBoardService;
+import kr.or.ddit.user.service.IReplyService;
 import kr.or.ddit.user.service.IuserService;
 import kr.or.ddit.user.service.UserService;
 

@@ -37,7 +37,7 @@ public class BoardDaoTest {
 
 		/***Then***/
 		
-		assertEquals("60002",boardList.get(0).getBoardid());
+		assertEquals("60024",boardList.get(0).getBoardid());
 	
 
 	}
@@ -77,9 +77,10 @@ public class BoardDaoTest {
 		String boardid= "60004"; 
 		String boardname= "식단표";
 		String userid= "dkskqk00";
+		String boarduse_yn="0";
 		//String boardid= "60002";
 		
-		jspBoardVo= new JSPBoardVo(boardid,boardname, userid);
+		jspBoardVo= new JSPBoardVo(boardid,boardname,boarduse_yn, userid);
 		
 		/***When***/
 		
@@ -112,8 +113,8 @@ public class BoardDaoTest {
 		String boardid= "60004"; 
 		String boardname= "오늘의식단표";
 		String userid= "dkskqk00";
-		
-		jspBoardVo= new JSPBoardVo(boardid,boardname, userid);
+		String boarduse_yn="0";
+		jspBoardVo= new JSPBoardVo(boardid,boardname,boarduse_yn, userid);
 		/***When***/
 		
 		int updtateCnt=dao.updateBoard(jspBoardVo);
@@ -137,9 +138,10 @@ public class BoardDaoTest {
 		
 		String boardid= "60004"; 
 		String boardname= "오늘의식단표";
-		String userid= "dkskqk00";
 		
-		jspBoardVo= new JSPBoardVo(boardid,boardname, userid);
+		String userid= "dkskqk00";
+		String boarduse_yn="0";
+		jspBoardVo= new JSPBoardVo(boardid,boardname,boarduse_yn, userid);
 		/***When***/
 		
 		int deleteCnt=dao.deleteBoard(boardid);

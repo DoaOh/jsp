@@ -52,6 +52,7 @@ public class BoardDao implements IBoardDao {
 		
 		SqlSession sqlSession = MyBataisUtill.getSqlSession();
 		JSPBoardVo boardVo = sqlSession.selectOne("user.boardInfo",boardid);
+		
 		return boardVo;
 	}
 

@@ -22,10 +22,10 @@ import kr.or.ddit.user.service.PostService;
 
 
 @WebServlet("/postServlet")
-public class noticeServletController extends HttpServlet {
+public class postServletController extends HttpServlet {
 	
 	private static final Logger logger = LoggerFactory
-			.getLogger(noticeServletController.class);
+			.getLogger(postServletController.class);
 	
 	private IPostService  postService;
 	

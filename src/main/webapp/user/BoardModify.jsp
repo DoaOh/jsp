@@ -26,7 +26,9 @@
 $(document).ready(function(){
 	
         	$("#boardModifyBtn").on("click",function(){
-        		
+//         		var val2 = $("#boardname").val();
+//         		var val = $("#boarduse_yn option:selected").val();
+//         		console.log(val);
         		$("#frm").submit();
         	});
   
@@ -56,19 +58,19 @@ $(document).ready(function(){
 			
 				
 			<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath}/boardModify" method="post" enctype="multipart/form-data">
-			
-				<input type="hidden" id="boardid" name="boardid" value="${board.boardid}"/>		
+				<input type="hidden" id="boardid" name="boardid" value="${BOARD.boardid}"/>		
 				
+			
 			
 			
 			
 				
 				<div class="form-group">
 				
-						<label for="userNm" class="col-sm-2 control-label"> 게시판제목</label>
+						<label for="userNm" class="col-sm-2 control-label"> 게시판이름</label>
 						
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="boardid" name="boardid" placeholder="제목"  value="${board.boardid}">
+							<input type="text" class="form-control" id="boardname" name="boardname" placeholder="제목"  value="${BOARD.boardname}">
 						</div>
 				</div>
 				
@@ -77,20 +79,16 @@ $(document).ready(function(){
 				
 						<label for="userAlias" class="col-sm-2 control-label">사용여부</label>
 						
-							<select  name="selsect" id="selsect" >
+							<select  name="boarduse_yn" id="boarduse_yn" >
+								
+									<option value="0"><span>사용중</span></option>
+									<option value="1"><span>사용안함</span></option>
 									
-									<option value="11"> 		<c:choose>
-									<c:when test="${board.boarduse_yn==0}">
-										<span>사용중</span>
-									</c:when>
-									<c:otherwise>
-									<span>사용안함</span>
-									</c:otherwise>
 									
-								</c:choose>
+						<%-- 			
 									</option>
-									<option value="22"> 		<c:choose>
-									<c:when test="${board.boarduse_yn==0}">
+									<option value="1"> 		<c:choose>
+									<c:when test="${BOARD.boarduse_yn==0}">
 										<span>사용안함</span>
 									</c:when>
 									<c:otherwise>
@@ -98,18 +96,18 @@ $(document).ready(function(){
 									</c:otherwise>
 								</c:choose>
 									</option>
-									</select>
+									
+									 --%>
+									
+									
+									
+						</select>
 								
 				</div>
 				
-				
-	
-	
-	
-	
-				
 										<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
+
 									<button id="boardModifyBtn"type="button" class="btn btn-default">게시글수정완료</button>
 								</div>
 							</div>

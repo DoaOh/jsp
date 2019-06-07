@@ -7,6 +7,7 @@ public interface IBoardService {
 	
 
 List<JSPBoardVo> boardList();
+
 List<JSPBoardVo> boardALLList();
 
 public JSPBoardVo getBoard(String boardid);

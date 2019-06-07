@@ -21,21 +21,7 @@ cursor:pointer;
 }
 </style>
 
-<script>
 
-
-$(document).ready(function(){
-	
-	//사용자 테그 이벤트 등록
-	$("#boardGOGO").on("click",function(){
-		
-		 var boardid = $(this).find(".boardid").text();
-		 $("#boardid").val(boardid);
-		 $("#frm").submit();
-	});
-	
-});
-</script>
 
 <title>전체 게시판 목록</title>
 
@@ -85,8 +71,9 @@ $(document).ready(function(){
 								</tr>
 								
 							
-								<c:forEach items="${boardAllList}" var="board" >
-							<tr data-userid="${board.boardid}">
+							<c:forEach items="${boardAllList}" var="board" >
+							
+							<tr  class="boardTr" data-userid="${board.boardid}">
 							<td class="boardid">${board.boardid}</td>
 									<td>${board.boardname}</td>
 									<td><c:choose>
@@ -100,7 +87,7 @@ $(document).ready(function(){
 								</c:choose>
 									</td>
 						
-								<td><a id="boardGOGO" href="${pageContext.request.contextPath}/boardModify" class="btn btn-default pull-right">수정</a></td>
+								<td><a id="boardGOGO" href="${pageContext.request.contextPath}/boardModify?boardid=${board.boardid}" class="btn btn-default pull-right">수정</a></td>
 								</tr>
 								
 								</c:forEach>

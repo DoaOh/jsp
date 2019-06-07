@@ -105,10 +105,7 @@ $(document).ready(function(){
 
 						</div>
 
-						<a href="${pageContext.request.contextPath}/boardManagement" class="btn btn-default pull-right">게시글 쓰기</a>
-
-
-
+						
 
 						<div class="text-center">
 							<ul class="pagination">

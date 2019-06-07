@@ -16,13 +16,13 @@ import kr.or.ddit.user.service.PostService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@WebServlet("/postModify")
+@WebServlet("/postDelete")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 3, maxRequestSize = 1024 * 1024 * 15)
-public class postModifyController extends HttpServlet {
+public class postDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(postModifyController.class);
+			.getLogger(postDeleteController.class);
 	private IPostService postService;
 	
 
@@ -39,17 +39,12 @@ public class postModifyController extends HttpServlet {
 	
 		 String postid = request.getParameter("postId");
 		 
-		 logger.debug("modify postid {}",postid);
 
 		 JSPPostVo postVo = postService.getPost(postid);
 
 		 request.setAttribute("post",postVo );
 
 		
-
-		request.getRequestDispatcher("/user/postModify.jsp").forward(request,
-				response);
-
 	}
 
 	// 사용자 등록 요청 처리

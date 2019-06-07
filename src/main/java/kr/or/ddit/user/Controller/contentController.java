@@ -51,10 +51,10 @@ public class contentController extends HttpServlet {
 	     
 		 List<JSPPostVo> boardPostList= (List<JSPPostVo>)resultMap.get("boardPostList");
 		 logger.debug("뜨니 안뜨니 {}",boardPostList);
-			
+		
+		 
 		 
 		int paginationSize = (Integer)resultMap.get("paginationSize");
-		request.setAttribute("boardPostList", boardPostList);
 		request.setAttribute("boardPostList", boardPostList);
 		request.setAttribute("paginationSize", paginationSize);
 		request.setAttribute("BPageVo", BpageVo);

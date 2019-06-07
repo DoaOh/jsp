@@ -1,6 +1,7 @@
 package kr.or.ddit.user.Controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -14,6 +15,7 @@ import kr.or.ddit.user.model.JSPBoardVo;
 import kr.or.ddit.user.model.JSPPostVo;
 import kr.or.ddit.user.service.BoardService;
 import kr.or.ddit.user.service.IBoardService;
+import kr.or.ddit.user.service.IReplyService;
 import kr.or.ddit.user.service.IPostService;
 import kr.or.ddit.user.service.PostService;
 
@@ -64,9 +66,10 @@ public class boardModifyController extends HttpServlet {
 		
 		String boardname= request.getParameter("boardname");
 		String boarduse_yn = request.getParameter("boarduse_yn");
-		String boardid = "";
-		logger.debug("boardname {} ",boardname);
-		logger.debug("boarduse_yn {} ",boarduse_yn);
+		String boardid= request.getParameter("boardid");
+		
+		logger.debug("boarduse_yn ::: {} ",boarduse_yn);
+		
 		
 		JSPBoardVo JSPBoardVo=null;
 		JSPBoardVo = new JSPBoardVo(boardid, boardname,boarduse_yn, userid);
@@ -78,6 +81,8 @@ public class boardModifyController extends HttpServlet {
 			//정상등록
 			if(updateCnt == 1){
 				response.sendRedirect(request.getContextPath()+"/boardList");
+				List<JSPBoardVo> boardList= boardService.boardList();
+				request.getServletContext().setAttribute("BoardList", boardList);
 			}else{
 				request.setAttribute("msg", "실패.");
 				

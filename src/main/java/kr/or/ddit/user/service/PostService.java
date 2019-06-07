@@ -63,6 +63,7 @@ public class PostService implements IPostService{
 		return resultMap;
 	}
 
+	
 
 	
 	@Override
@@ -79,12 +80,12 @@ public class PostService implements IPostService{
 	}
 
 
-
+/*
 	@Override
 	public int deletePost(String postId) {
 		return dao.deletePost(postId);
 	}
-
+*/
 
 
 	@Override
