@@ -82,10 +82,15 @@ public class PostService implements IPostService{
 
 /*
 	@Override
+	public int deletePost(JSPPostVo jSPPostVo) {
+		return dao.deletePost(jSPPostVo);
+	}
+	*/
+	@Override
 	public int deletePost(String postId) {
 		return dao.deletePost(postId);
 	}
-*/
+
 
 
 	@Override

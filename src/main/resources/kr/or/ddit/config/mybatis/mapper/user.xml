@@ -33,8 +33,8 @@
 from
 (select a.*, rownum rn
 from
-(select post.postid, post.postid2, lpad(' ', (level-1)*4) || post.posttitle
-from jsppost post where boardid=#{boardid}
+(select post.postid, post.postid2,postuse_yn, lpad(' ', (level-1)*4) || post.posttitle
+from jsppost post where boardid=#{boardid} and 
 start with postid2 is null
 connect by prior postid = postid2
 )a)b
@@ -56,8 +56,8 @@ select b.*
 from
 (select a.*, rownum rn
 from
-(select post.postid, post.postid2, lpad(' ', (level-1)*4) || post.posttitle
-from jsppost post
+(select post.postid, post.postid2,postuse_yn, lpad(' ', (level-1)*4) || post.posttitle
+from jsppost post 
 start with postid2 is null
 connect by prior postid = postid2
 )a)b
@@ -73,7 +73,8 @@ connect by prior postid = postid2
 select b.*
 from
 (select a.*, rownum rn from  (select post.postid,post.userid, post.posttitle, post.postcontent, 
-post.postred_dt, post.postid2,post.boardid, lpad(' ', (level-1)*4) || post.posttitle from jsppost post where boardid=#{boardid}
+post.postred_dt, post.postid2,post.boardid,postuse_yn, lpad(' ', (level-1)*4) || post.posttitle, level lv from jsppost post where boardid=#{boardid}
+
 start with postid2 is null connect by prior postid = postid2)a)b where 	rn >= (#{page}-1)*#{pageSize}+1 and rn<= #{page}*#{pageSize}
 	
 	
@@ -118,11 +119,17 @@ start with postid2 is null connect by prior postid = postid2)a)b where 	rn >= (#
 	</update>
 
 
-	<!-- <update id="deletePost" parameterType="JSPBoardVo">
+<!--  <update id="deletePost" parameterType="JSPPostVo">
 		update jsppost set postuse_yn = 1
 		where postid = #{postid}
-	</update>
+ </update>
  -->
+
+ <update id="deletePost" parameterType="String">
+		update jsppost set postuse_yn = 1
+		where postid = #{postid}
+ </update>
+
 
 <!-- 	<delete id="deletePost" parameterType="String">
 		delete from jsppost

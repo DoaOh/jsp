@@ -90,52 +90,40 @@ $(document).ready(function(){
 
 
 								<c:forEach items="${boardPostList}" var="post">
-
-									<tr class="postTr" data-userid="${post.postid}">
-										<td class="postId">${post.postid}</td>
-										<td>
-										
-										
-										
-										<%-- ${post.posttitle} --%>
-										
-										
-										
-	                                <c:choose>
-									<c:when test="${post.postid2!=null}">
-										&nbsp;&nbsp;&nbsp;&nbsp;+ ${post.posttitle}
-									</c:when>
-									<c:otherwise>
-										${post.posttitle}
-									</c:otherwise>
-								</c:choose>
-										
-										</td>
-										<td>${post.postcontent}</td>
-										<td>${post.userid}</td>
-										<td>${post.postred_dtstr}</td>
-									</tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+								
+								   <c:choose>
+										<c:when test="${post.postuse_yn==0}">	
+			
+												<tr class="postTr" data-userid="${post.postid}">
+											    <td class="postId">${post.postid}</td>
+											    <td>
+												<c:choose>
+												<c:when test="${post.lv==2}">
+												&nbsp;&nbsp;&nbsp;&nbsp;+ ${post.posttitle} 
+												</c:when>
+												<c:when test="${post.lv==3}">
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ ${post.posttitle} 
+												</c:when>
+												<c:when test="${post.lv==4}">
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ ${post.posttitle} 
+												</c:when>
+												<c:otherwise>
+												${post.posttitle}
+												</c:otherwise>
+										        </c:choose>
+													
+												</td>
+												<td>${post.postcontent}</td>
+												<td>${post.userid}</td>
+												<td>${post.postred_dtstr}</td>
+												</tr>
+										</c:when>
+										<c:otherwise>	
+												<tr><td>삭제된게시물입니다</td></tr>
+										</c:otherwise>
+									 </c:choose>
 								</c:forEach>
+								
 							</table>
 
 						</div>

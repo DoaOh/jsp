@@ -95,6 +95,18 @@ public class PostDao implements IPostDao {
 		return updateCnt;
 	}
 
+	/*@Override
+	public int deletePost(JSPPostVo jSPPostVo) {
+		SqlSession sqlSession = MyBataisUtill.getSqlSession();
+		int deleteCnt=sqlSession.insert("user.deletePost",jSPPostVo);
+		sqlSession.commit();
+		sqlSession.close();
+		return deleteCnt;
+	}*/
+
+	
+	
+	
 	@Override
 	public int deletePost(String postId) {
 		SqlSession sqlSession = MyBataisUtill.getSqlSession();
@@ -104,9 +116,10 @@ public class PostDao implements IPostDao {
 		return deleteCnt;
 	}
 
+	
+	
 	@Override
 	public int insertPost(JSPPostVo jSPPostVo) {
-		
 		SqlSession sqlSession = MyBataisUtill.getSqlSession();
 		int insertCnt=sqlSession.insert("user.insertPost",jSPPostVo);
 		sqlSession.commit();

@@ -35,15 +35,25 @@ public class postDeleteController extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
 		
-		logger.debug( " doget"  );
-	
-		 String postid = request.getParameter("postId");
+     		logger.debug( " doget"  );
+		 String postid = request.getParameter("postid");
+		 logger.debug("왜안되는걸까{}",postid); 
 		 
+		 int deleteCnt = postService.deletePost(postid);
+			
+		logger.debug("updateCnt{}",deleteCnt);
 
-		 JSPPostVo postVo = postService.getPost(postid);
+			//정상등록
+			if(deleteCnt == 1){
+				response.sendRedirect(request.getContextPath()+"/postServlet");
+			}else{
+				response.sendRedirect(request.getContextPath()+"/login");
+				
+			}
 
-		 request.setAttribute("post",postVo );
-
+		 
+		 
+		
 		
 	}
 
@@ -54,34 +64,24 @@ public class postDeleteController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 
 		
-		String posttitle= request.getParameter("posttitle");
-		String postcontent= request.getParameter("postcontent");
-		String boardid= request.getParameter("boardid");
-		String postid = request.getParameter("postId");
-		String postid2 = "";
-		String userid= request.getParameter("userid");
+/*		logger.debug( " dopost"  );
 		
-		logger.debug("modify postid {}",postid);
-		logger.debug("posttitle {} ",posttitle);
-		logger.debug("postcontent {} ",postcontent);
-		logger.debug("boardid {} ",boardid);
-		logger.debug("userid {} ",userid);
 		
-		JSPPostVo JSPPostVo=null;
-		JSPPostVo = new JSPPostVo(postid, userid, posttitle, postcontent, postid2,  boardid);
+		 String postid = request.getParameter("postid");
+		 logger.debug("postidpostidpostid{}",postid);
 		
-			int updateCnt = postService.updatePost(JSPPostVo);
+		int deleteCnt = postService.deletePost(postid);
 			
-			logger.debug("updateCnt{}",updateCnt);
+			logger.debug("updateCnt{}",deleteCnt);
 
 			//정상등록
-			if(updateCnt == 1){
+			if(deleteCnt == 1){
 				response.sendRedirect(request.getContextPath()+"/postServlet");
 			}else{
-				request.setAttribute("msg", "실패.");
+				response.sendRedirect(request.getContextPath()+"/login");
 				
 			}
-
+*/
 		
 
 	}

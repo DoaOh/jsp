@@ -14,10 +14,37 @@ public class JSPPostVo {
 	private Date postred_dt;
 	private String postid2;
 	private String boardid;
+	private String lv;
+	private String postuse_yn;
 	
 	
 	
-    public String getpostred_dtstr() {
+	
+    public String getPostuse_yn() {
+		return postuse_yn;
+	}
+
+
+
+	public void setPostuse_yn(String postuse_yn) {
+		this.postuse_yn = postuse_yn;
+	}
+
+
+
+	public String getLv() {
+		return lv;
+	}
+
+
+
+	public void setLv(String lv) {
+		this.lv = lv;
+	}
+
+
+
+	public String getpostred_dtstr() {
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     	if(postred_dt==null){
     		return"";

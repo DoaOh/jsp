@@ -30,7 +30,11 @@ List<JSPPostVo> boardPostList(String boardid);
 int updatePost(JSPPostVo jSPPostVo);
 
 
+//int deletePost(JSPPostVo jSPPostVo);
+
+
 int deletePost(String postId);
+
 
 
 int insertPost(JSPPostVo jSPPostVo);	

@@ -50,8 +50,8 @@
 						<form id="frm" class="form-horizontal" role="form"
 							action="${pageContext.request.contextPath}/postModify"
 							method="get">
-							<input type="hidden" id="postId" name="postId"
-								value="${post.postid}" />
+							<input type="hidden" id="postId" name="postId" value="${post.postid}" />
+							<input type="hidden" id="postId2" name="postId2" value="${post.postid2}" />
 
 							<div class="form-group">
 								<label for="userNm" class="col-sm-2 control-label">제목</label>
@@ -91,9 +91,7 @@
 						<div class="form-group">
 							<div class="col-sm-12">
 							<button type="submit" class="btn btn-default pull-right">포스트 수정</button>
-							&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;
 							<a id="deleteGOGO" href="${pageContext.request.contextPath}/postDelete?postid=${post.postid}" class="btn btn-default pull-right">포스트 삭제</a>
-							&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;
 							<a id="commentGOGO" href="${pageContext.request.contextPath}/postComment?postid=${post.postid}&boardid=${post.boardid}" class="btn btn-default pull-right">답글달기</a>
 							</div>
 						</div>
