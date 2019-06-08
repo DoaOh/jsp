@@ -31,8 +31,8 @@ public class ReplyService implements IReplyService{
 	}
 
 	@Override
-	public int deleteReply(JSPReplyVo jspReplyVo) {
-		return dao.deleteReply(jspReplyVo);
+	public int deleteReply(String replycode) {
+		return dao.deleteReply(replycode);
 	}
 
 	@Override

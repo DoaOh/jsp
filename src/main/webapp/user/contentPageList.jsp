@@ -40,6 +40,13 @@ $(document).ready(function(){
 		 $("#frm").submit();
 	});
 	
+	
+		$("#post").on("click", function() {
+			$("#frm2").submit();
+		})
+		
+	
+	
 });
 </script>
 
@@ -71,15 +78,23 @@ $(document).ready(function(){
 						<h2 class="sub-header">게시판</h2>
 						
 						
-							<form id="frm" action="${pageContext.request.contextPath}/post" method ="get">
+						<form id="frm" action="${pageContext.request.contextPath}/post" method ="get">
 						
 						<input type="hidden" id="postId" name="postId">
+						
+						</form>
+						
+						<form id="frm2" action="${pageContext.request.contextPath}/postForm" method ="get">
+						
+						<input type="hidden" id="boardid" name="boardid" value = "${boardid }" >
+						
+						
 						</form>
 						
 						
 						
 						<div class="table-responsive">
-							<table class="table table-striped">
+							<table  class="table table-striped">
 								<tr>
 									<th>게시글번호</th>
 									<th>제목</th>
@@ -119,7 +134,7 @@ $(document).ready(function(){
 												</tr>
 										</c:when>
 										<c:otherwise>	
-												<tr><td>삭제된게시물입니다</td></tr>
+												<tr><td></td><td></td> <td>삭제된게시물입니다</td><td></td><td></td></tr>
 										</c:otherwise>
 									 </c:choose>
 								</c:forEach>
@@ -127,8 +142,9 @@ $(document).ready(function(){
 							</table>
 
 						</div>
+						<button id = "post" type = "submit">게시글 쓰기</button>
 
-						<a href="${pageContext.request.contextPath}/postForm" class="btn btn-default pull-right">게시글 쓰기</a>
+<%-- 						<a id ="post"  href="${pageContext.request.contextPath}/postForm"  class="btn btn-default pull-right">게시글 쓰기</a> --%>
 
 
 
@@ -139,8 +155,7 @@ $(document).ready(function(){
 
 								<%
 									BPageVo BpageVo = (BPageVo) request.getAttribute("BPageVo");
-									int paginationSize = (Integer) request
-											.getAttribute("paginationSize");
+									int paginationSize = (Integer) request.getAttribute("paginationSize");
 								%>
 
 

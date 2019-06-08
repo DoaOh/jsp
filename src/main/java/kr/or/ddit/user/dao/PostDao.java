@@ -127,7 +127,16 @@ public class PostDao implements IPostDao {
 		return insertCnt;
 	}
 
-	
+
+	@Override
+	public int insertPost2(JSPPostVo jSPPostVo) {
+		SqlSession sqlSession = MyBataisUtill.getSqlSession();
+		int insertCnt=sqlSession.insert("user.insertPost2",jSPPostVo);
+		sqlSession.commit();
+		sqlSession.close();
+		return insertCnt;
+	}
+
 	
 	
 	

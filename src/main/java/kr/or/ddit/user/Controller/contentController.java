@@ -55,6 +55,7 @@ public class contentController extends HttpServlet {
 		 
 		 
 		int paginationSize = (Integer)resultMap.get("paginationSize");
+		request.setAttribute("boardid", boardid);
 		request.setAttribute("boardPostList", boardPostList);
 		request.setAttribute("paginationSize", paginationSize);
 		request.setAttribute("BPageVo", BpageVo);

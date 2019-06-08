@@ -52,10 +52,12 @@ public class postFormController extends HttpServlet {
 	
 	//사용자 등록 화면 요청 처리 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		
+		String boardid= request.getParameter("boardid");
+		logger.debug("boardid {} ",boardid);
+		request.setAttribute("boardid", boardid);
 	
-		
-		
 	//사용자 등록 화면으로 이동 
 	request.getRequestDispatcher("/user/postForm.jsp").forward(request, response);
 
@@ -64,46 +66,72 @@ public class postFormController extends HttpServlet {
 
 	//사용자 등록 요청 처리
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+	//request.getRequestDispatcher("/user/postForm.jsp").forward(request, response);
+
 	request.setCharacterEncoding("utf-8");
 
 	HttpSession session =request.getSession();
 	String userid=(String) request.getSession().getAttribute("USERID");
 	
-	
 	String posttitle= request.getParameter("posttitle");
 	String postcontent= request.getParameter("postcontent");
 	String boardid= request.getParameter("boardid");
-	String postid2 =request.getParameter("postid");
 	String postid = "";
+	String postid2 =request.getParameter("postid");
 
-
-	logger.debug("userid {} ",session);
+	logger.debug("userid {} ",userid);
 	logger.debug("posttitle {} ",posttitle);
 	logger.debug("postcontent {} ",postcontent);
 	logger.debug("boardid {} ",boardid);
+	logger.debug("postid2 {} ",postid2);
 	
 	
 	
-	 JSPPostVo JSPPostVo=null;
-
+	JSPPostVo JSPPostVo=null;
 	JSPPostVo = new JSPPostVo(postid, userid,  posttitle, postcontent, postid2,  boardid);
-	
 	
 	// 게시판이 존재  --> 정상입력가능
 		if(boardid != null){
 			
 			
-			int insertCnt = postService.insertPost(JSPPostVo);
+	/*		Part profile = request.getPart("profile");
+			
+			// 사용자가 파일을 업로드 한 경우
+			if(profile.getSize() > 0){
+				// 실제파일명
+				String contentDisposition = profile.getHeader("content-disposition");
+				String filename = PartUtil.getFileName(contentDisposition);
+				String ext = PartUtil.getExt(filename);
+				ext = ext.equals("") ? "" : "." + ext;
+				
+				String uploadPath = PartUtil.getUploadPath();
+				File uploadFolder = new File(uploadPath);
+				if (uploadFolder.exists()) {
 
-			// 정상등록
+					// 파일 디스크에 쓰기
+					String filePath = uploadPath + File.separator + UUID.randomUUID().toString() + ext;
+					userVo.setPath(filePath);
+					userVo.setFilename(filename);
+					profile.write(filePath);
+					profile.delete();
+				}
+				
+			}
+			
+			
+			*/
+			int insertCnt = postService.insertPost2(JSPPostVo);
 			if(insertCnt == 1){
-				response.sendRedirect(request.getContextPath()+"/postServlet");
+				response.sendRedirect(request.getContextPath()+"/content?boardid="+boardid);
+				//response.sendRedirect(request.getContextPath()+"/login");
+			
 			}
 		}
 		// 게시판이 없다면 
 		else{
-			request.setAttribute("msg", "존재하지 않는 게시판.");
-			doGet(request,response);
+			response.sendRedirect(request.getContextPath()+"/login");
 		}
 }
 

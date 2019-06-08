@@ -56,9 +56,9 @@ public class ReplyDao implements IReplyDao {
 	}
 	
 	@Override
-	public int deleteReply (JSPReplyVo jspReplyVo) {
+	public int deleteReply (String replycode) {
 		SqlSession sqlSession = MyBataisUtill.getSqlSession();
-		int deleteCnt=sqlSession.insert("user.deleteReply",jspReplyVo);
+		int deleteCnt=sqlSession.insert("user.deleteReply",replycode);
 		sqlSession.commit();
 		sqlSession.close();
 		return deleteCnt;

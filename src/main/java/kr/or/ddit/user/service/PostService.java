@@ -78,6 +78,11 @@ public class PostService implements IPostService{
 	public int insertPost(JSPPostVo jSPPostVo) {
 		return dao.insertPost(jSPPostVo);
 	}
+	
+	@Override
+	public int insertPost2(JSPPostVo jSPPostVo) {
+		return dao.insertPost2(jSPPostVo);
+	}
 
 
 /*

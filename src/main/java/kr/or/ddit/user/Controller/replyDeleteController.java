@@ -11,24 +11,26 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.ddit.user.model.JSPPostVo;
 import kr.or.ddit.user.service.IPostService;
+import kr.or.ddit.user.service.IReplyService;
 import kr.or.ddit.user.service.PostService;
+import kr.or.ddit.user.service.ReplyService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@WebServlet("/postDelete")
+@WebServlet("/replyDelete")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 3, maxRequestSize = 1024 * 1024 * 15)
-public class postDeleteController extends HttpServlet {
+public class replyDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(postDeleteController.class);
-	private IPostService postService;
+			.getLogger(replyDeleteController.class);
+	private IReplyService replyService;
 	
 
 	@Override
 	public void init() throws ServletException {
-		postService= new PostService();
+		replyService= new ReplyService();
 	}
 
 
@@ -36,16 +38,21 @@ public class postDeleteController extends HttpServlet {
 		HttpServletResponse response) throws ServletException, IOException {
 		
      		logger.debug( " doget"  );
-		 String postid = request.getParameter("postid");
-		 logger.debug("왜안되는걸까{}",postid); 
+		 String replycode = request.getParameter("replycode");
+		 String postId = request.getParameter("postid");
 		 
-		 int deleteCnt = postService.deletePost(postid);
+		 logger.debug("왜안되는걸까{}",replycode); 
+		 
+		 int deleteCnt = replyService.deleteReply(replycode);
 			
 		logger.debug("updateCnt{}",deleteCnt);
 
+		
+		
+		
 			//정상등록
 			if(deleteCnt == 1){
-				response.sendRedirect(request.getContextPath()+"/postServlet");
+				response.sendRedirect(request.getContextPath()+"/post?postId="+postId);
 			}else{
 				response.sendRedirect(request.getContextPath()+"/login");
 				

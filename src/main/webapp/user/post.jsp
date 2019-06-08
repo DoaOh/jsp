@@ -15,7 +15,6 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>게시글 보기</title>
-<!--css js-->
 <%@include file="/common/basiclib.jsp"%>
 
 <script>
@@ -23,8 +22,15 @@
 		$("#modify").on("click", function() {
 			$("#frm").submit();
 		})
+		
+		$("#replyRegBtn").on("click", function() {
+			$("#frmreply").submit();
+		})
 	})
 </script>
+
+
+
 
 </head>
 <body>
@@ -40,9 +46,6 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<div class="row">
 					<div class="col-sm-8 blog-main">
-
-
-
 
 						<h2 class="sub-header">포스트보기</h2>
 
@@ -92,25 +95,25 @@
 							<div class="col-sm-12">
 							<button type="submit" class="btn btn-default pull-right">포스트 수정</button>
 							<a id="deleteGOGO" href="${pageContext.request.contextPath}/postDelete?postid=${post.postid}" class="btn btn-default pull-right">포스트 삭제</a>
+							
 							<a id="commentGOGO" href="${pageContext.request.contextPath}/postComment?postid=${post.postid}&boardid=${post.boardid}" class="btn btn-default pull-right">답글달기</a>
 							</div>
 						</div>
-					
 						</form>
 						
-
-
-
-					  <!-- 댓글을 작성해 봅시당 -->
-						<form>
 						
-						<div class="table-responsive">
-							<table class="table table-striped">
+					  <!-- 댓글을 작성해 봅시당 -->
+					  
+						<form  id="frmreply" action="${pageContext.request.contextPath}/replyinsert"
+							method="post">
+							<input type="hidden" id="postid" name="postid" value="${post.postid}"/>	
+							
+							<table id="replytable" class="table table-striped text-center">
 								<tr>
-									
-									<th>댓글</th>
-									<th>글쓴이</th>
-									<th>작성일</th>
+									<th class="text-center">댓글</th>
+									<th class="text-center">글쓴이</th>
+									<th class="text-center">작성일</th>
+									<th class="text-center"></th>
 								</tr>
 
 
@@ -120,11 +123,20 @@
 										<td>${reply.reply}</td>
 										<td>${reply.userid}</td>
 										<td>${reply.replyred_dtstr}</td>
+										<td><a id="replydeleteGOGO" href="${pageContext.request.contextPath}/replyDelete?replycode=${reply.replycode}&postid=${post.postid}" class="btn btn-default pull-right"> 삭제</a></td>
 									</tr>
 
 								</c:forEach>
 							</table>
-
+							
+							
+							
+							
+						<div class="form-group">
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="reply" name="reply" placeholder="댓글" value="${param.reply}">									
+						</div>
+							<div class="col-sm-2"><button id="replyRegBtn" type="button" class="btn btn-default pull-right">댓글등록</button></div>
 						</div>
 						
 						</form>

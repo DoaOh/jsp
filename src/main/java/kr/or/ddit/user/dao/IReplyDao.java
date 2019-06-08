@@ -18,7 +18,7 @@ public interface IReplyDao {
 
  int insertReply(JSPReplyVo jspReplyVo);	
 
- int deleteReply(JSPReplyVo jspReplyVo);
+ int deleteReply(String replycode);
 
  int updateReply(JSPReplyVo jspReplyVo);
 

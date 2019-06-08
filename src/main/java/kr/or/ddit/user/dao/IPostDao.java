@@ -38,5 +38,6 @@ int deletePost(String postId);
 
 
 int insertPost(JSPPostVo jSPPostVo);	
+int insertPost2(JSPPostVo jSPPostVo);	
  
 }

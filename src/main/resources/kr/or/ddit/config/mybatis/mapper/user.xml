@@ -109,7 +109,15 @@ start with postid2 is null connect by prior postid = postid2)a)b where 	rn >= (#
 
 	<insert id="insertPost" parameterType="JSPPostVo">
 		insert into jsppost
-		VALUES (JSPPOSTID_SEQ.NEXTVAL,#{userid}, #{posttitle}, #{postcontent}, sysdate, #{postid2},#{boardid})
+		VALUES (JSPPOSTID_SEQ.NEXTVAL,#{userid}, #{posttitle}, #{postcontent}, sysdate, #{postid2},#{boardid},0)
+	</insert>
+	
+	<insert id="insertPost2" parameterType="JSPPostVo">
+	
+	INSERT INTO JSPPOST
+	 (POSTID, USERID, POSTTITLE, POSTCONTENT, POSTRED_DT, BOARDID, POSTUSE_YN) 
+	 VALUES (JSPPOSTID_SEQ.NEXTVAL,#{userid}, #{posttitle}, #{postcontent}, sysdate, #{boardid},0)
+	
 	</insert>
 
 
@@ -219,7 +227,7 @@ start with postid2 is null connect by prior postid = postid2)a)b where 	rn >= (#
 	</update>
 
 	
-	<update id="deleteReply" parameterType="JSPReplyVo">
+	<update id="deleteReply" parameterType="String">
 		update jspreply set reply_yn = 1
 		where replycode = #{replycode}
 	</update>

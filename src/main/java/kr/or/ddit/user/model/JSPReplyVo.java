@@ -110,15 +110,12 @@ public class JSPReplyVo {
 
 
 
-	public JSPReplyVo(String replycode, String postid, String reply,
-			Date replyred_dt, String userid ,String reply_yn) {
+	public JSPReplyVo( String postid, String reply,String userid) {
 		super();
-		this.replycode = replycode;
 		this.postid = postid;
 		this.reply = reply;
-		this.replyred_dt = replyred_dt;
 		this.userid = userid;
-		this.reply_yn = reply_yn;
+		
 	}
 
 
