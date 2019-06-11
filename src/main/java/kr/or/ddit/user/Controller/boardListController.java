@@ -7,10 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import kr.or.ddit.user.service.BoardService;
 import kr.or.ddit.user.service.IBoardService;
-import kr.or.ddit.user.service.IReplyService;
 
 
 

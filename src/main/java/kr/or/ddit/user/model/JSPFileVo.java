@@ -2,7 +2,7 @@ package kr.or.ddit.user.model;
 
 public class JSPFileVo {
 	
-	private String fidleid;
+	private String fileid;
 	private String postid;
 	private String filepath;
 	private String filename;
@@ -14,10 +14,10 @@ public class JSPFileVo {
 	}
 	
 	
-	public JSPFileVo(String fidleid, String postid, String filepath,
+	public JSPFileVo(String postid, String filepath,
 			String filename) {
 		super();
-		this.fidleid = fidleid;
+	
 		this.postid = postid;
 		this.filepath = filepath;
 		this.filename = filename;
@@ -26,14 +26,14 @@ public class JSPFileVo {
 	
 	@Override
 	public String toString() {
-		return "JSPFileVo [fidleid=" + fidleid + ", postid=" + postid
+		return "JSPFileVo [fileid=" + fileid + ", postid=" + postid
 				+ ", filepath=" + filepath + ", filename=" + filename + "]";
 	}
-	public String getFidleid() {
-		return fidleid;
+	public String getfileid() {
+		return fileid;
 	}
 	public void setFidleid(String fidleid) {
-		this.fidleid = fidleid;
+		this.fileid = fidleid;
 	}
 	public String getPostid() {
 		return postid;

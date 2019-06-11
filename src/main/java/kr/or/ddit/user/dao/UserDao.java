@@ -15,7 +15,7 @@ public class UserDao implements IuserDao {
 		
 		SqlSession sqlSession = MyBataisUtill.getSqlSession();
 		List<UserVo> userList= sqlSession.selectList("user.userList");
-
+		sqlSession.close();
 		return userList;
 	}
 
@@ -24,7 +24,7 @@ public class UserDao implements IuserDao {
 
 		SqlSession sqlSession = MyBataisUtill.getSqlSession();
 		UserVo uservo = sqlSession.selectOne("user.userInfo",userId);
-		
+		sqlSession.close();
 		return uservo;
 	
 	

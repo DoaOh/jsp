@@ -6,237 +6,267 @@
 <mapper namespace="user">
 
 	<select id="userList" resultType="UserVo">
-		select * from users order by userid
+		select * from users order by
+		userid
 	</select>
-
 
 
 	<select id="userInfo" parameterType="String" resultType="UserVo">
-		select * from users where userid = #{userId}
+		select *
+		from users where userid = #{userId}
 	</select>
+
+
+
+
+  <!-- post -->
 
 
 	<select id="postInfo" parameterType="String" resultType="JSPPostVo">
-		select * from jsppost where postid = #{postId}
+		select *
+		from jsppost where postid = #{postId}
+	</select>
+
+
+	<select id="boardPostList" resultType="JSPPostVo" parameterType="String">
+		<![CDATA[
+			select b.*
+			from
+			(select a.*, rownum rn
+			from
+			(select post.postid, post.postid2,postuse_yn, lpad(' ', (level-1)*4) || post.posttitle
+			from jsppost post where boardid=#{boardid} and 
+			start with postid2 is null
+			connect by prior postid = postid2
+			)a)b
+		]]>
 	</select>
 
 
 
 
-
-
-	<select id="boardPostList" resultType="JSPPostVo" parameterType="String" >
-	
-	
-	<![CDATA[
-	select b.*
-from
-(select a.*, rownum rn
-from
-(select post.postid, post.postid2,postuse_yn, lpad(' ', (level-1)*4) || post.posttitle
-from jsppost post where boardid=#{boardid} and 
-start with postid2 is null
-connect by prior postid = postid2
-)a)b
-
-	
-	]]>		
-	
-	
-	
-	</select>
-	
-	
-	
-	
 	<select id="postList" resultType="JSPPostVo">
-
-<![CDATA[		
-select b.*
-from
-(select a.*, rownum rn
-from
-(select post.postid, post.postid2,postuse_yn, lpad(' ', (level-1)*4) || post.posttitle
-from jsppost post 
-start with postid2 is null
-connect by prior postid = postid2
-)a)b
-
-]]>		
+		<![CDATA[		
+			select b.*
+			from
+			(select a.*, rownum rn
+			from
+			(select post.postid, post.postid2,postuse_yn, lpad(' ', (level-1)*4) || post.posttitle
+			from jsppost post 
+			start with postid2 is null
+			connect by prior postid = postid2
+			)a)b
+		]]>
 	</select>
-	
 
+<!--  order by postred_dt desc -->
 
 	<select id="boardPostPagingList" parameterType="BPageVo" resultType="JSPPostVo">
-<![CDATA[
-
-select b.*
-from
-(select a.*, rownum rn from  (select post.postid,post.userid, post.posttitle, post.postcontent, 
-post.postred_dt, post.postid2,post.boardid,postuse_yn, lpad(' ', (level-1)*4) || post.posttitle, level lv from jsppost post where boardid=#{boardid}
-
-start with postid2 is null connect by prior postid = postid2)a)b where 	rn >= (#{page}-1)*#{pageSize}+1 and rn<= #{page}*#{pageSize}
-	
-	
-	
-]]>
+		<![CDATA[
+			select b.*
+			from
+			(select a.*, rownum rn from  (select post.postid,post.userid, post.posttitle, post.postcontent, 
+			post.postred_dt, post.postid2,post.boardid,postuse_yn, lpad(' ', (level-1)*4) ||
+			 post.posttitle, level lv from jsppost post where boardid=#{boardid}
+			start with postid2 is null connect by prior postid = postid2
+			order siblings by group_seq,postred_dt desc )a)b
+			 where 	rn >= (#{page}-1)*#{pageSize}+1 and rn<= #{page}*#{pageSize}
+		]]>
 	</select>
 
-
-
-
-
-	<select id="postPagingList" parameterType="pageVo" resultType="JSPPostVo">
-<![CDATA[
-
-		select *
-		from
-		(select a.*, rownum rn
-		from
-		(select a.*
-		from jsppost a
-		order by
-		 postid ) a)
-		where 	rn >= (#{page}-1)*#{pageSize}+1 and rn<= #{page}*#{pageSize}
 	
-]]>
-	</select>
+		<select id="postPagingList" parameterType="pageVo" resultType="JSPPostVo">
+			<![CDATA[
+					select *
+					from
+					(select a.*, rownum rn
+					from
+					(select a.*
+					from jsppost a
+					order by
+					 postid ) a)
+					where 	rn >= (#{page}-1)*#{pageSize}+1 and rn<= #{page}*#{pageSize}
+			]]>
+		</select>
 
-
-	<select id="postCnt" resultType="int">
-		select count(*) from jsppost
-	</select>
-
-	<insert id="insertPost" parameterType="JSPPostVo">
-		insert into jsppost
-		VALUES (JSPPOSTID_SEQ.NEXTVAL,#{userid}, #{posttitle}, #{postcontent}, sysdate, #{postid2},#{boardid},0)
-	</insert>
 	
-	<insert id="insertPost2" parameterType="JSPPostVo">
+		<select id="postCnt" resultType="int" parameterType="String">
+			select count(*) from jsppost
+		</select>
 	
-	INSERT INTO JSPPOST
-	 (POSTID, USERID, POSTTITLE, POSTCONTENT, POSTRED_DT, BOARDID, POSTUSE_YN) 
-	 VALUES (JSPPOSTID_SEQ.NEXTVAL,#{userid}, #{posttitle}, #{postcontent}, sysdate, #{boardid},0)
 	
-	</insert>
-
-
-	<update id="updatePost" parameterType="JSPPostVo">
-		update jsppost set posttitle = #{posttitle}, postcontent = #{postcontent}, boardid=#{boardid}
-		where postid = #{postid}
-	</update>
-
-
-<!--  <update id="deletePost" parameterType="JSPPostVo">
-		update jsppost set postuse_yn = 1
-		where postid = #{postid}
- </update>
- -->
-
- <update id="deletePost" parameterType="String">
-		update jsppost set postuse_yn = 1
-		where postid = #{postid}
- </update>
-
-
-<!-- 	<delete id="deletePost" parameterType="String">
-		delete from jsppost
-		where postid = #{postid}
-	</delete>
- -->
-
-
-
-
-
-
-
-	<select id="boardInfo" parameterType="String" resultType="JSPBoardVo">
-		select * from jspboard where boardid = #{boardid}
-	</select>
-
-
-	<select id="boardList" resultType="JSPBoardVo">
-		select * from jspboard where boarduse_yn=0 order by boardid
-	</select>
+		<select id="BoardPostCnt" resultType="int" parameterType="String">
+			select count(*) from jsppost where boardid=#{boardid}
+		</select>
 	
-	<select id="boardALLList" resultType="JSPBoardVo">
-		select * from jspboard order by boardid
-	</select>
+	
+		<insert id="insertPost" parameterType="JSPPostVo">
+			insert into jsppost
+			VALUES (JSPPOSTID_SEQ.NEXTVAL,#{userid}, #{posttitle},
+			#{postcontent}, sysdate, #{postid2},#{boardid},0,#{group_seq})
+		</insert>
+	
+	
+		<insert id="insertPost2" parameterType="JSPPostVo">
+			INSERT INTO JSPPOST
+			(POSTID, USERID, POSTTITLE, POSTCONTENT, POSTRED_DT, BOARDID, POSTUSE_YN ,GROUP_SEQ)
+			VALUES (JSPPOSTID_SEQ.NEXTVAL,#{userid}, #{posttitle}, #{postcontent},
+			sysdate, #{boardid},0,group_seq1.nextval)
+		</insert>
+	
+	
+		<update id="updatePost" parameterType="JSPPostVo">
+			update jsppost set
+			posttitle = #{posttitle}, postcontent = #{postcontent},
+			boardid=#{boardid}
+			where postid = #{postid}
+		</update>
+	
+	
+		<!-- <update id="deletePost" parameterType="JSPPostVo"> update jsppost set 
+			postuse_yn = 1 where postid = #{postid} </update> -->
+	
+		<update id="deletePost" parameterType="String">
+			update jsppost set
+			postuse_yn = 1
+			where postid = #{postid}
+		</update>
+	
+	
+		<!-- <delete id="deletePost" parameterType="String"> delete from jsppost 
+			where postid = #{postid} </delete> -->
+	
+	
+	
+<!-- 	board -->
+	
+		<select id="boardInfo" parameterType="String" resultType="JSPBoardVo">
+			select * from jspboard where boardid = #{boardid}
+		</select>
+	
+	
+		<select id="boardList" resultType="JSPBoardVo">
+			select * from jspboard where
+			boarduse_yn=0 order by boardid
+		</select>
+	
+		<select id="boardALLList" resultType="JSPBoardVo">
+			select * from jspboard order by boardid
+		</select>
 	
 		<select id="boardCnt" resultType="int">
-		select count(*) from jspboard
-	</select>
-
-	<insert id="insertBoard" parameterType="JSPBoardVo">
-		insert into jspboard
-		VALUES (JSPBOARDID_SEQ.NEXTVAL,#{boardname},0,#{userid},sysdate)
-	</insert>
+			select count(*) from jspboard
+		</select>
 	
-
-	<update id="updateBoard" parameterType="JSPBoardVo">
-		update jspboard set boardname = #{boardname}, boarduse_yn = #{boarduse_yn}
-		where boardid = #{boardid}
-	</update>
-
+		<insert id="insertBoard" parameterType="JSPBoardVo">
+			insert into jspboard
+			VALUES (JSPBOARDID_SEQ.NEXTVAL,#{boardname},0,#{userid},sysdate)
+		</insert>
 	
-	<update id="deleteBoard" parameterType="JSPBoardVo">
-		update jspboard set boarduse_yn = 1
-		where boardid = #{boardid}
-	</update>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<select id="getReply" parameterType="String" resultType="JSPReplyVo">
-		select * from jspreply where replycode = #{replycode}
-	</select>
-
-	<select id="replyList" resultType="JSPReplyVo" parameterType="String">
-		select * from jspreply where reply_yn=0 and postid=#{postid} order by replyred_dt
-	</select>
+	
+		<update id="updateBoard" parameterType="JSPBoardVo">
+			update jspboard set
+			boardname = #{boardname}, boarduse_yn = #{boarduse_yn}
+			where boardid =
+			#{boardid}
+		</update>
+	
+	
+		<update id="deleteBoard" parameterType="JSPBoardVo">
+			update jspboard set boarduse_yn = 1
+			where boardid = #{boardid}
+		</update>
+	
+	
+	
+	
+<!-- 	Reply -->
+	
+		<select id="getReply" parameterType="String" resultType="JSPReplyVo">
+			select * from jspreply where replycode = #{replycode}
+		</select>
+	
+		<select id="replyList" resultType="JSPReplyVo" parameterType="String">
+			select * from jspreply where postid=#{postid} order by replyred_dt
+		</select>
 	
 		<select id="replyCnt" resultType="int">
-		select count(*) from jspreply
-	</select>
-
-	<insert id="insertReply" parameterType="JSPReplyVo">
-		insert into jspreply
-		VALUES (JSPBOARDID_SEQ.NEXTVAL,#{postid},#{reply},sysdate,#{userid},0)
-	</insert>
+			select count(*) from jspreply
+		</select>
 	
-
-	<update id="updateReply" parameterType="JSPReplyVo">
-		update jspreply set reply=#{reply},reply_yn=#{reply_yn}
-		where replycode = #{replycode}
-	</update>
-
+		<insert id="insertReply" parameterType="JSPReplyVo">
+			insert into jspreply
+			VALUES (JSPBOARDID_SEQ.NEXTVAL,#{postid},#{reply},sysdate,#{userid},0)
+		</insert>
 	
-	<update id="deleteReply" parameterType="String">
-		update jspreply set reply_yn = 1
-		where replycode = #{replycode}
-	</update>
-
-
-
-
-
-
-
+	
+		<update id="updateReply" parameterType="JSPReplyVo">
+			update jspreply set
+			reply=#{reply},reply_yn=#{reply_yn}
+			where replycode = #{replycode}
+		</update>
+	
+	
+		<update id="deleteReply" parameterType="String">
+			update jspreply set
+			reply_yn = 1
+			where replycode = #{replycode}
+		</update>
+	
+	
+	
+	
+<!-- 	File -->
+	
+		<select id="getFile" parameterType="String" resultType="JSPFileVo">
+			select *
+			from jspfile where postid = #{postid}
+		</select>
+	
+		<select id="FileDown" parameterType="String" resultType="JSPFileVo">
+			select *
+			from jspfile where fileid = #{fileid}
+		</select>
+	
+	
+		<select id="FileList" resultType="JSPFileVo" parameterType="String">
+			select * from jspfile where postid=#{postid}
+		</select>
+	
+		<select id="FileCnt" resultType="int">
+			select count(*) from jspfile
+		</select>
+	
+	
+		<insert id="insertFile" parameterType="JSPFileVo">
+			<![CDATA[
+				insert into jspfile (fileid, postid, filepath, filename) 
+				values (JSPFILEID_SEQ.NEXTVAL,( select max (postid) from jsppost), #{filepath} , #{filename})
+			]]>
+		</insert>
+	
+	
+	
+		<insert id="insertFile2" parameterType="JSPFileVo">
+			<![CDATA[
+				insert into jspfile (fileid, postid, filepath, filename) 
+				values (JSPFILEID_SEQ.NEXTVAL,#{postid} , #{filepath} , #{filename})
+			]]>
+		</insert>
+	
+	
+		<update id="updateFile" parameterType="JSPFileVo">
+			update jspfile set
+			filepath=#{filepath},filename=#{filename}
+			where postid = #{postid}
+		</update>
+	
+	
+		<delete id="deleteFile" parameterType="String">
+			delete from jspfile where fileid=#{fileid}
+		</delete>
+	
+	
+	
 
 </mapper>

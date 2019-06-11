@@ -35,14 +35,14 @@
 				
 
 <div class="blog-header">
-	<h1 class="blog-title">Main</h1>
-	<p class="lead blog-description">Jsp / Spring.</p>
+	<h1 class="blog-title">JSP</h1>
+	<p class="lead blog-description">Jsp/게시판과제</p>
 </div>
 
 <div class="row">
 	<div class="col-sm-8 blog-main">
 		<div class="blog-post">
-			<h2 class="blog-post-title">JSP</h2>
+			<!-- <h2 class="blog-post-title">JSP</h2> -->
 		</div>
 	</div>
 </div>

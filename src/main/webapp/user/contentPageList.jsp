@@ -26,6 +26,8 @@
 .userTr:hover{
 cursor:pointer;
 }
+
+
 </style>
 
 <script>
@@ -75,20 +77,15 @@ $(document).ready(function(){
 
 				<div class="row">
 					<div class="col-sm-8 blog-main">
-						<h2 class="sub-header">게시판</h2>
+						<h2 class="sub-header">${boardname}</h2>
 						
 						
 						<form id="frm" action="${pageContext.request.contextPath}/post" method ="get">
-						
 						<input type="hidden" id="postId" name="postId">
-						
 						</form>
 						
 						<form id="frm2" action="${pageContext.request.contextPath}/postForm" method ="get">
-						
-						<input type="hidden" id="boardid" name="boardid" value = "${boardid }" >
-						
-						
+						<input type="hidden" id="boardid" name="boardid" value = "${boardid}" >
 						</form>
 						
 						
@@ -97,8 +94,8 @@ $(document).ready(function(){
 							<table  class="table table-striped">
 								<tr>
 									<th>게시글번호</th>
-									<th>제목</th>
-									<th>내용</th>
+									<th col style="width:50%;">제목</th>
+									<!-- <th>내용</th> -->
 									<th>글쓴이</th>
 									<th>작성일</th>
 								</tr>
@@ -117,10 +114,10 @@ $(document).ready(function(){
 												&nbsp;&nbsp;&nbsp;&nbsp;+ ${post.posttitle} 
 												</c:when>
 												<c:when test="${post.lv==3}">
-												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ ${post.posttitle} 
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++ ${post.posttitle} 
 												</c:when>
 												<c:when test="${post.lv==4}">
-												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ ${post.posttitle} 
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+++ ${post.posttitle} 
 												</c:when>
 												<c:otherwise>
 												${post.posttitle}
@@ -128,13 +125,13 @@ $(document).ready(function(){
 										        </c:choose>
 													
 												</td>
-												<td>${post.postcontent}</td>
+											<%-- 	<td>${post.postcontent}</td> --%>
 												<td>${post.userid}</td>
 												<td>${post.postred_dtstr}</td>
 												</tr>
 										</c:when>
 										<c:otherwise>	
-												<tr><td></td><td></td> <td>삭제된게시물입니다</td><td></td><td></td></tr>
+												<tr><td></td><td>[삭제된게시물입니다]</td><td></td><td></td><td></td></tr>
 										</c:otherwise>
 									 </c:choose>
 								</c:forEach>
@@ -142,14 +139,9 @@ $(document).ready(function(){
 							</table>
 
 						</div>
-						<button id = "post" type = "submit">게시글 쓰기</button>
-
-<%-- 						<a id ="post"  href="${pageContext.request.contextPath}/postForm"  class="btn btn-default pull-right">게시글 쓰기</a> --%>
-
-
-
-
-						<div class="text-center">
+						<button id = "post" type = "submit" class="btn btn-default pull-right">게시글 작성</button>
+				<%-- <a id ="post"  href="${pageContext.request.contextPath}/postForm"  class="btn btn-default pull-right">게시글 쓰기</a> --%>
+							<div class="text-center">
 							<ul class="pagination">
 
 
@@ -166,7 +158,6 @@ $(document).ready(function(){
 									<c:otherwise>
 										<li><a href="${pageContext.request.contextPath}/content?boardid=${BPageVo.boardid}&page=${BPageVo.page-1}&pageSize=${BPageVo.pageSize}">띠용«</a>
 										</li>
-
 									</c:otherwise>
 								</c:choose>
 
@@ -192,10 +183,8 @@ $(document).ready(function(){
 										<li><a
 											href="${pageContext.request.contextPath}/content?boardid=${BPageVo.boardid}&page=${BPageVo.page+1}&pageSize=${BPageVo.pageSize}">»때용</a>
 										</li>
-
 									</c:otherwise>
 								</c:choose>
-
 							</ul>
 						</div>
 					</div>

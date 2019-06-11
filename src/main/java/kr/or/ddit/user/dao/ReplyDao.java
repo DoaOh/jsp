@@ -1,13 +1,9 @@
 package kr.or.ddit.user.dao;
 
 import java.util.List;
-
 import kr.or.ddit.myBatis.MyBataisUtill;
 import kr.or.ddit.user.model.JSPReplyVo;
-
 import org.apache.ibatis.session.SqlSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ReplyDao implements IReplyDao {
 
@@ -18,7 +14,7 @@ public class ReplyDao implements IReplyDao {
 		
 		SqlSession sqlSession = MyBataisUtill.getSqlSession();
 		JSPReplyVo replyVo = sqlSession.selectOne("user.boardInfo",replycode);
-		
+		sqlSession.close();
 		return replyVo;
 	}
 
@@ -29,7 +25,7 @@ public class ReplyDao implements IReplyDao {
 		
 		SqlSession sqlSession = MyBataisUtill.getSqlSession();
 		List<JSPReplyVo> replyList= sqlSession.selectList("user.replyList",postid);
-		
+		sqlSession.close();
 		return replyList;
 	}
 	

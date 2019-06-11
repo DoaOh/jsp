@@ -20,7 +20,6 @@ public class PostService implements IPostService{
 
 	@Override
 	public List<JSPPostVo> postList() {
-
 		return dao.postList();
 	
 	}
@@ -28,33 +27,22 @@ public class PostService implements IPostService{
 
 	@Override
 	public List<JSPPostVo> boardPostList(String boardid) {
-		
 		return dao.boardPostList(boardid);
-		
 	}
 
 
 	
 	public Map<String, Object> postPagingList(PageVo pageVo) {
 
-		
-	
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		
 		resultMap.put("postList", dao.postPagingList(pageVo));
-		
-		
 		int postCnt =dao.postCnt();
-		
 		int paginationSize =(int) Math.ceil((double)postCnt/pageVo.getPageSize());
 		resultMap.put("paginationSize",paginationSize);
-		
-		 
 		return resultMap;
 	}
 	
-	public Map<String, Object> boardPostPagingList(BPageVo BpageVo) {
-		
+/*	public Map<String, Object> boardPostPagingList(BPageVo BpageVo) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("boardPostList", dao.boardPostPagingList(BpageVo));
 		int postCnt =dao.postCnt();
@@ -62,7 +50,17 @@ public class PostService implements IPostService{
 		resultMap.put("paginationSize",paginationSize);
 		return resultMap;
 	}
-
+*/
+	
+	public Map<String, Object> boardPostPagingList(BPageVo BpageVo) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("boardPostList", dao.boardPostPagingList(BpageVo));
+		String boardid = BpageVo.getBoardid();
+		int BoardPostCnt =dao.BoardPostCnt(boardid);
+		int paginationSize =(int) Math.ceil((double)BoardPostCnt/BpageVo.getPageSize());
+		resultMap.put("paginationSize",paginationSize);
+		return resultMap;
+	}
 	
 
 	

@@ -10,11 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import kr.or.ddit.user.model.JSPBoardVo;
 import kr.or.ddit.user.service.BoardService;
 import kr.or.ddit.user.service.IBoardService;
-import kr.or.ddit.user.service.IReplyService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -44,12 +44,11 @@
         <h2 class="form-signin-heading">Please sign in</h2>
         
         <label for="userId" class="sr-only">userId</label>
-        <input type="text" id="userId" class="form-control" name="userId" 
-        placeholder="userId"  value="dkskqk00" required >
+        <input type="text" id="userId" class="form-control" name="userId" placeholder="userId"  required >
         
         <label for="password" class="sr-only">Password</label>
         <input type="password" id="password" name="password"class="form-control"
-         placeholder="Password" value="dkskqk00" required >
+         placeholder="Password"  required >
         <button id="signinBtn"class="btn btn-lg btn-primary btn-block" type="button">Sign in</button>
       </form>
 

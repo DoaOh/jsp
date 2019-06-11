@@ -12,6 +12,7 @@
 		<typeAlias alias="JSPBoardVo" type="kr.or.ddit.user.model.JSPBoardVo" />
 		<typeAlias alias="JSPPostVo" type="kr.or.ddit.user.model.JSPPostVo" />
 		<typeAlias alias="JSPReplyVo" type="kr.or.ddit.user.model.JSPReplyVo" />
+		<typeAlias alias="JSPFileVo" type="kr.or.ddit.user.model.JSPFileVo" />
 		
 	</typeAliases>
 

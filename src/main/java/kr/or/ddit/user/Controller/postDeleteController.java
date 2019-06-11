@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.ddit.user.model.JSPPostVo;
 import kr.or.ddit.user.service.IPostService;
 import kr.or.ddit.user.service.PostService;
 

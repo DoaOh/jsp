@@ -28,7 +28,7 @@ public class PostDao implements IPostDao {
 		
 		SqlSession sqlSession = MyBataisUtill.getSqlSession();
 		List<JSPPostVo> postList= sqlSession.selectList("user.postList");
-		
+		sqlSession.close();
 		return postList;
 	}
 	
@@ -38,7 +38,7 @@ public class PostDao implements IPostDao {
 		
 		SqlSession sqlSession = MyBataisUtill.getSqlSession();
 		List<JSPPostVo> boardPostList= sqlSession.selectList("user.boardPostList",boardid);
-		
+		sqlSession.close();
 		return boardPostList;
 	}
 
@@ -71,6 +71,15 @@ public class PostDao implements IPostDao {
 		int postCnt =(Integer)sqlSession.selectOne("user.postCnt");
 		sqlSession.close();
 		return postCnt;
+	}
+	
+	
+	@Override
+	public int BoardPostCnt(String boardid) {
+		SqlSession sqlSession = MyBataisUtill.getSqlSession();
+		int BoardPostCnt =(Integer)sqlSession.selectOne("user.BoardPostCnt",boardid);
+		sqlSession.close();
+		return BoardPostCnt;
 	}
 
 	

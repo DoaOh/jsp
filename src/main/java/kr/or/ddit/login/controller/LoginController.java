@@ -85,28 +85,21 @@ public class LoginController extends HttpServlet {
 
 		// 일치
 		if (userVo !=null && userId.equals(a) && password.equals(b)) {
-			
-			
 			// session에 사용자 정보를 넣어준다 (사용빈도가 높기때문에)
 			HttpSession session =request.getSession();
 			session.setAttribute("USER_INFO",userVo );
 			session.setAttribute("USERID",userId );
 			
-			
 			List<JSPBoardVo> boardList= boardService.boardList();
-			//session.setAttribute("BoardList", boardList);
 			
 			request.getServletContext().setAttribute("BoardList", boardList);
-			
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/main.jsp");
 			rd.forward(request, response);
 			
 		}else{	
 			
-			request.getRequestDispatcher("/login/login.jsp").forward(request, response);
-			
-
+			response.sendRedirect(request.getContextPath()+"/login");	
 		}
 		
 		

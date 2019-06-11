@@ -67,7 +67,7 @@ $(document).ready(function(){
 
 				<div class="row">
 					<div class="col-sm-8 blog-main">
-						<h2 class="sub-header">게시판</h2>
+						<h2 class="sub-header">게시판 (계층구조없이 postid 순으로 출력)</h2>
 						
 						
 							<form id="frm" action="${pageContext.request.contextPath}/post" method ="get">
@@ -118,9 +118,6 @@ $(document).ready(function(){
 											.getAttribute("paginationSize");
 								%>
 
-
-
-
 								<c:choose>
 									<c:when test="${pageVo.getPage()==1}">
 										<li class="disabled"><span>띠용«</span></li>
@@ -131,7 +128,6 @@ $(document).ready(function(){
 
 									</c:otherwise>
 								</c:choose>
-
 
 								<c:forEach begin="1" end="${paginationSize}" var="i">
 									<c:choose>
@@ -151,7 +147,6 @@ $(document).ready(function(){
 										<li class="disabled"><span>»때용</span></li>
 									</c:when>
 									<c:otherwise>
-
 
 
 										<li><a

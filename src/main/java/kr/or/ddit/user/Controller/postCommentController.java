@@ -1,12 +1,6 @@
 package kr.or.ddit.user.Controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.UUID;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -14,15 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-
 import kr.or.ddit.user.model.JSPPostVo;
-import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.IPostService;
-import kr.or.ddit.user.service.IuserService;
 import kr.or.ddit.user.service.PostService;
-import kr.or.ddit.user.service.UserService;
-import kr.or.ddit.util.PartUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,7 +65,10 @@ public class postCommentController extends HttpServlet {
 	String postcontent= request.getParameter("postcontent");
 	String boardid= request.getParameter("boardid");
 	String postid2 =request.getParameter("postid");
+	
 	String postid = "";
+	JSPPostVo postVo2 = postService.getPost(request.getParameter("postid"));
+	String group_seq= postVo2.getGroup_seq();
 	
 
 
@@ -90,7 +81,7 @@ public class postCommentController extends HttpServlet {
 	
 	
 	 JSPPostVo JSPPostVo=null;
-	JSPPostVo = new JSPPostVo(postid, userid,  posttitle, postcontent, postid2,  boardid);
+	JSPPostVo = new JSPPostVo(postid, userid,  posttitle, postcontent, postid2,  boardid,group_seq);
 	
 	
 	

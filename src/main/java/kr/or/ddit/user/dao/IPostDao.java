@@ -22,6 +22,7 @@ List<JSPPostVo> boardPostList(String boardid);
  List<JSPPostVo> boardPostPagingList(BPageVo BpageVo);
  
  int postCnt();
+ int BoardPostCnt(String boardid);	
 
  
  JSPPostVo getPost(String postid);
@@ -38,6 +39,7 @@ int deletePost(String postId);
 
 
 int insertPost(JSPPostVo jSPPostVo);	
-int insertPost2(JSPPostVo jSPPostVo);	
+int insertPost2(JSPPostVo jSPPostVo);
+
  
 }

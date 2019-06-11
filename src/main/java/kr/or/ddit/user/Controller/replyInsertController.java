@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import kr.or.ddit.user.model.JSPReplyVo;
-import kr.or.ddit.user.service.IPostService;
 import kr.or.ddit.user.service.IReplyService;
 import kr.or.ddit.user.service.ReplyService;
 

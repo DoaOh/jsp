@@ -21,7 +21,7 @@ public class BoardDao implements IBoardDao {
 		
 		SqlSession sqlSession = MyBataisUtill.getSqlSession();
 		List<JSPBoardVo> boardList= sqlSession.selectList("user.boardList");
-		
+		sqlSession.close();
 		return boardList;
 	}
 
@@ -30,7 +30,7 @@ public class BoardDao implements IBoardDao {
 		
 		SqlSession sqlSession = MyBataisUtill.getSqlSession();
 		List<JSPBoardVo> boardList= sqlSession.selectList("user.boardALLList");
-		
+		sqlSession.close();
 		return boardList;
 	}
 	
@@ -52,7 +52,7 @@ public class BoardDao implements IBoardDao {
 		
 		SqlSession sqlSession = MyBataisUtill.getSqlSession();
 		JSPBoardVo boardVo = sqlSession.selectOne("user.boardInfo",boardid);
-		
+		sqlSession.close();
 		return boardVo;
 	}
 

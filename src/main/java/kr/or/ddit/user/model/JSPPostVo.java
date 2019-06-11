@@ -16,11 +16,24 @@ public class JSPPostVo {
 	private String boardid;
 	private String lv;
 	private String postuse_yn;
+	private String group_seq;
 	
 	
 	
 	
-    public String getPostuse_yn() {
+    public String getGroup_seq() {
+		return group_seq;
+	}
+
+
+
+	public void setGroup_seq(String group_seq) {
+		this.group_seq = group_seq;
+	}
+
+
+
+	public String getPostuse_yn() {
 		return postuse_yn;
 	}
 
@@ -64,7 +77,7 @@ public class JSPPostVo {
 
 
 	public JSPPostVo(String postid,String userid, String posttitle,
-			String postcontent, String postid2, String boardid) {
+			String postcontent, String postid2, String boardid,String group_seq) {
 		
 		super();
 		
@@ -74,6 +87,7 @@ public class JSPPostVo {
 		this.postcontent = postcontent;
 		this.postid2 = postid2;
 		this.boardid = boardid;
+		this.group_seq = group_seq;
 	}
 
 

@@ -11,7 +11,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">JSP/SPRING 
+			<a class="navbar-brand" href="#">
 		<!--
 		사용자가 정상적으로 로그인 했을 경우 : USER_INFO에 있는 name 속성 출력  
 		사용자가 로그인하지 않고 메인화면으로 직접 접속했을 경우
@@ -20,28 +20,24 @@
 				
 				<c:choose>
 					<c:when test="${USER_INFO != null}">
-						${USER_INFO.name }
+						${USER_INFO.name }님 환영합니다 
 					</c:when>
 					<c:otherwise>
 						접속하지 않은 사용자 입니다.
 					</c:otherwise>
 				</c:choose>
-				
-				
-				
-				
 			</a>
+			
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Dashboard</a></li>
+				<!-- <li><a href="#">Dashboard</a></li>
 				<li><a href="#">Settings</a></li>
-				<li><a href="#">Profile</a></li>
+				<li><a href="#">Profile</a></li> -->
 				<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
 			</ul>
-			<form class="navbar-form navbar-right">
-				<input type="text" class="form-control" placeholder="Search...">
-			</form>
+		<!-- 	<form class="navbar-form navbar-right"> <input type="text" class="form-control" placeholder="Search...">
+			</form> -->
 		</div>
 	</div>
 </nav>

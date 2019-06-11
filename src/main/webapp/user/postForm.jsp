@@ -1,8 +1,7 @@
 <%@page import="kr.or.ddit.paging.model.PageVo"%>
 <%@page import="kr.or.ddit.user.model.UserVo"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -32,28 +31,21 @@
 <script type="text/javascript">
 	var oEditors = []; // 개발되어 있는 소스에 맞추느라, 전역변수로 사용하였지만, 지역변수로 사용해도 전혀 무관 함.
 
-	$(document)
-			.ready(
-					function() {
+	$(document).ready(function() {
+		
+		var fileCnt ="";
+		$('#click').on('click',function(){
+			
+				if ($('.file').length != 5) {
+					
+					fileCnt = $('#result input').length;
+					$('#result').append("<input type='file'  class='file' name='profile"+fileCnt+"'/>");
+					} else {alert("첨부파일은 5개 까지만 가능합니다");}})
 
-						$('#click')
-								.on(
-										'click',
-										function() {
-
-											if ($('.file').length != 5) {
-												$('#result')
-														.append(
-																"<input type='file'  class='file' name='profile'/>")
-											} else {
-												alert("첨부파일은 5개 까지만 가능합니다");
-
-											}
-										})
-
+					
+					
 						// Editor Setting
-						nhn.husky.EZCreator
-								.createInIFrame({
+						nhn.husky.EZCreator.createInIFrame({
 									oAppRef : oEditors, // 전역변수 명과 동일해야 함.
 									elPlaceHolder : "smarteditor", // 에디터가 그려질 textarea ID 값과 동일 해야 함.
 									sSkinURI : "${pageContext.request.contextPath}/SE2/SmartEditor2Skin.html", // Editor HTML
@@ -67,7 +59,8 @@
 										bUseModeChanger : true,
 									}
 								});
-
+			
+		
 						// 전송버튼 클릭이벤트
 						$("#postRegBtn").click(
 								function() {
@@ -92,7 +85,6 @@
 			oEditors.getById['smarteditor'].exec('FOCUS');
 			return false;
 		}
-
 		return true;
 	}
 </script>
@@ -120,9 +112,7 @@
 						<h2 class="sub-header">게시글 작성</h2>
 
 						<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath}/postForm"
-						method="post">
-
-
+						method="post" enctype="multipart/form-data">
 
 
 							<div class="form-group">
@@ -134,17 +124,12 @@
 
 
 							<div class="form-group">
-
-
-
 								<div class="col-sm-10">
 									<%-- 		<input type="text" class="form-control" id="postcontent" name="postcontent" placeholder="내용" value="${param.postcontent}"> --%>
-									<textarea name="postcontent" id="smarteditor" rows="10"
+									<textarea class="postcontent" name="postcontent" id="smarteditor" rows="10"
 										cols="100" style="width: 828px; height: 412px;"
-										value="${param.postcontent}"></textarea>
-
-
-
+										value="${param.postcontent}" ></textarea>
+									
 								</div>
 							</div>
 
@@ -152,13 +137,10 @@
 							<div class="form-group">
 
 								<label class="col-sm-2 control-lable">첨부파일</label>
-
-								<div class="col-sm-7">
-
-									<input type="file" class="file" name="profile">
-									<div id="result"></div>
-
-								</div>
+									<div class="col-sm-7">
+										<input type="file" class="file" name="profile" id ="profile">
+										<div id="result"></div>
+									</div>
 								<div class="col-sm-2">
 									<button id="click" type="button"
 										class="btn btn-default pull-right">추가</button>
@@ -170,7 +152,7 @@
 
 							<div class="form-group">
 								<div class="col-sm-8">
-									<input type="text" class="form-control" id="boardid"
+									<input type="hidden" class="form-control" id="boardid"
 										name="boardid" placeholder="게시판지정" value="${boardid}">
 								</div>
 							</div>

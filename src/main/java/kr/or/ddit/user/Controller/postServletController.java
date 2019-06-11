@@ -24,8 +24,6 @@ import kr.or.ddit.user.service.PostService;
 @WebServlet("/postServlet")
 public class postServletController extends HttpServlet {
 	
-	private static final Logger logger = LoggerFactory
-			.getLogger(postServletController.class);
 	
 	private IPostService  postService;
 	
