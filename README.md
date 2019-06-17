@@ -9,24 +9,24 @@
 ##목처
 * kr.or.ddit.calculator 
    파라미터를 활용 `request.getparameter` 
-   logback 활용 `logger` 
+  * logback 활용 `logger` 
 * kr.or.ddit.dbConnection
-   database연결
+  *  database연결
 * kr.or.ddit.encrypt
-   비밀번호 암호화
+  *  비밀번호 암호화
 * kr.or.ddit.filter
-   filter check
+  *  filter check
 * kr.or.ddit.listener
 * kr.or.ddit.login.controller
-   login servlet 예제
+  * login servlet 예제
 * kr.or.ddit.lprod
-   lprod servlet 예제
+  * lprod servlet 예제
 * kr.or.ddit.user
-    user servlet 예제
+    * user servlet 예제
 * src/test/java
-    JunitTest
+    * JunitTest
 * bootstrap 
-    bootstrap을 
+   *  bootstrap을 
 * common
 * customTag
 * jsp
