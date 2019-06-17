@@ -4,9 +4,9 @@
 
 
 
-####jsp
+###### jsp (h6)
 
-##목처
+### 목차 (h3)
 * kr.or.ddit.calculator 
    파라미터를 활용 `request.getparameter` 
   * logback 활용 `logger` 
@@ -26,8 +26,9 @@
 * src/test/java
     * JunitTest
 * bootstrap 
-   *  bootstrap을 
+   *  bootstrap을 활용한 웹디자인
 * common
+ * bootstrap 모듈화
 * customTag
 * jsp
 * jstl
