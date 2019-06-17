@@ -8,23 +8,25 @@
 
 ##목처
 * kr.or.ddit.calculator 
-  예를 들어 `printf("hello world!");` 이런 식으로 들어갑니다.
+   파라미터를 활용 `request.getparameter` 
+   logback 활용 `logger` 
 * kr.or.ddit.dbConnection
+   database연결
 * kr.or.ddit.encrypt
+   비밀번호 암호화
 * kr.or.ddit.filter
+   filter check
 * kr.or.ddit.listener
 * kr.or.ddit.login.controller
+   login servlet 예제
 * kr.or.ddit.lprod
-* kr.or.ddit.mul
-* kr.or.ddit.mybatis
-* kr.or.ddit.paging.model
-* kr.or.ddit.prod
-* kr.or.ddit.servlet
-* kr.or.ddit.sum
+   lprod servlet 예제
 * kr.or.ddit.user
+    user servlet 예제
 * src/test/java
- * JunitTest
+    JunitTest
 * bootstrap 
+    bootstrap을 
 * common
 * customTag
 * jsp
