@@ -23,8 +23,8 @@
   * lprod servlet 예제
 * kr.or.ddit.user)
     * user servlet 예제
-* [src/test/java](https://github.com/DoaOh/jsp/commit/336c2a141b597b73910b92047a4e0e51844a1e40
-    * JunitTest
+* [ JunitTest](https://github.com/DoaOh/jsp/commit/336c2a141b597b73910b92047a4e0e51844a1e40)
+     * JunitTest
 * [bootstrap ](https://github.com/DoaOh/jsp/commit/94364d94f59c1449fc35768262d9d5e76eadadca)
    *  bootstrap을 활용한 웹디자인
 * [common](https://github.com/DoaOh/jsp/commit/94364d94f59c1449fc35768262d9d5e76eadadca)
