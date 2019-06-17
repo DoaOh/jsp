@@ -31,7 +31,7 @@
  * bootstrap 모듈화
 * customTag
 * jsp
-* jstl)
+* [jstl](https://github.com/DoaOh/jsp/commit/2030f54458922441f38843ab38eb68bdf2650732)
    * Core.jsp
    * selectLocale.jsp
    * fmtDate.jsp
