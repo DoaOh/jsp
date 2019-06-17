@@ -29,9 +29,9 @@
 * customTag
 * jsp
 * jstl
- * Core.jsp
- * selectLocale.jsp
- * fmtDate.jsp
+   * Core.jsp
+   * selectLocale.jsp
+   * fmtDate.jsp
 * login
 
 
