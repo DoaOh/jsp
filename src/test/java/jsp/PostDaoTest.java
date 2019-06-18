@@ -90,11 +90,11 @@ public class PostDaoTest {
 	}
 	
 	
-	@Test
+	/*@Test
 	public void insertPostTest(){
 		
 		
-		/***Given***/
+		*//***Given***//*
 		//사용자 정보를 담고있는 vo객체 준비 
 		
 		 
@@ -110,11 +110,11 @@ public class PostDaoTest {
 	
 		jSPPostVo= new JSPPostVo(postid, userid, posttitle, postcontent, postid2,  boardid);
 		
-		/***When***/
+		*//***When***//*
 		
 		int insertCnt=dao.insertPost(jSPPostVo);
 
-		/***Then***/
+		*//***Then***//*
 
 		assertEquals(1, insertCnt);
 		
@@ -134,7 +134,7 @@ public class PostDaoTest {
 	public void updatePostTest(){
 		
 		
-		/***Given***/
+		*//***Given***//*
 		//사용자 정보를 담고있는 vo객체 준비 
 		
 		 
@@ -149,11 +149,11 @@ public class PostDaoTest {
 	
 		jSPPostVo= new JSPPostVo(postid,userid, posttitle, postcontent, postid2,  boardid);
 		
-		/***When***/
+		*//***When***//*
 		
 		int updtateCnt=dao.updatePost(jSPPostVo);
 
-		/***Then***/
+		*//***Then***//*
 
 		assertEquals(1, updtateCnt);
 		
@@ -161,7 +161,7 @@ public class PostDaoTest {
 		
 	}
 	
-	
+	*/
 	
 	
 
