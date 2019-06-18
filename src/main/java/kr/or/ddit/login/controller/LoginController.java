@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +15,6 @@ import kr.or.ddit.user.model.JSPBoardVo;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.BoardService;
 import kr.or.ddit.user.service.IBoardService;
-import kr.or.ddit.user.service.IReplyService;
 import kr.or.ddit.user.service.IuserService;
 import kr.or.ddit.user.service.UserService;
 
